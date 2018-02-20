@@ -42,16 +42,15 @@ A simple wrapper around webpack. It supports different plugins and runtimes as w
 For applications
 
 ```bash
-npm i @alpacka/dev @alpacka/run-web @alpacka/plugin-babel
+npm i @alpacka/dev @alpacka/runtime-web @alpacka/plugin-babel
 ```
 
 ```jsx
 // dev.js
-const port = parseInt(process.env.PORT || 3000, 10);
 require('@alpacka/dev')({
   runtime: 'web',
   plugins: ['babel'],
-  port,
+  port: 3000,
 });
 ```
 
