@@ -31,7 +31,7 @@
     <img src="https://img.shields.io/github/stars/bkniffler/alpacka.svg?style=flat-square" alt="Stars">
   </a>
   <a href="https://www.npmjs.com/package/@alpacka/core">
-    <img src="https://img.shields.io/npm/l/@alpacka/core.svg?style=flat-square" alt="License">
+    <img src="https://img.shields.io/github/license/bkniffler/alpacka.svg?style=flat-square" alt="License">
   </a>
   <br />
   <br />

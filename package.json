@@ -6,6 +6,7 @@
   "description": "",
   "scripts": {
     "test": "jest",
+    "codecov": "codecov",
     "prepublish": "yarn test",
     "up": "yarn upgrade-interactive --latest",
     "init": "lerna init --independent",
@@ -40,5 +41,9 @@
     "jest": "^22.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
