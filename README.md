@@ -4,7 +4,38 @@
   </a>
 </div>
 
-# alpacka
+<div align="center">
+  <h2>Alpacka</h2>
+  <strong>A webpack abstractionn layer to target multiple platforms</strong>
+  <br />
+  <br />
+  <a href="https://travis-ci.org/bkniffler/alpacka">
+    <img src="https://img.shields.io/travis/bkniffler/alpacka.svg?style=flat-square" alt="Build Status">
+  </a>
+  <a href="https://codecov.io/github/bkniffler/alpacka">
+    <img src="https://img.shields.io/codecov/c/github/bkniffler/alpacka.svg?style=flat-square" alt="Coverage Status">
+  </a>
+  <a href="https://www.npmjs.com/package/@alpacka/core">
+    <img src="https://img.shields.io/npm/dm/@alpacka/core.svg?style=flat-square" alt="Downloads">
+  </a>
+  <a href="https://github.com/bkniffler/alpacka">
+    <img src="https://img.shields.io/github/issues/bkniffler/alpacka.svg?style=flat-square" alt="Issues">
+  </a>
+  <a href="https://www.npmjs.com/package/@alpacka/core">
+    <img src="https://img.shields.io/npm/v/@alpacka/core.svg?style=flat-square" alt="Version">
+  </a>
+  <a href="https://github.com/bkniffler/alpacka">
+    <img src="https://img.shields.io/github/forks/bkniffler/alpacka.svg?style=flat-square" alt="Forks">
+  </a>
+  <a href="https://github.com/bkniffler/alpacka">
+    <img src="https://img.shields.io/github/stars/bkniffler/alpacka.svg?style=flat-square" alt="Stars">
+  </a>
+  <a href="https://www.npmjs.com/package/@alpacka/core">
+    <img src="https://img.shields.io/npm/l/@alpacka/core.svg?style=flat-square" alt="License">
+  </a>
+  <br />
+  <br />
+</div>
 
 A simple wrapper around webpack. It supports different plugins and runtimes as well as dev (hot reload) and build-modes.
 
