@@ -21,8 +21,8 @@
   <a href="https://github.com/bkniffler/alpacka">
     <img src="https://img.shields.io/github/issues/bkniffler/alpacka.svg?style=flat-square" alt="Issues">
   </a>
-  <a href="https://www.npmjs.com/package/@alpacka/core">
-    <img src="https://img.shields.io/npm/v/@alpacka/core.svg?style=flat-square" alt="Version">
+  <a href="https://github.com/bkniffler/alpacka">
+    <img src="https://img.shields.io/github/package-json/v/bkniffler/alpacka.svg?style=flat-square" alt="Version">
   </a>
   <a href="https://github.com/bkniffler/alpacka">
     <img src="https://img.shields.io/github/forks/bkniffler/alpacka.svg?style=flat-square" alt="Forks">
@@ -30,7 +30,7 @@
   <a href="https://github.com/bkniffler/alpacka">
     <img src="https://img.shields.io/github/stars/bkniffler/alpacka.svg?style=flat-square" alt="Stars">
   </a>
-  <a href="https://www.npmjs.com/package/@alpacka/core">
+  <a href="https://github.com/bkniffler/alpacka/master/LICENSE">
     <img src="https://img.shields.io/github/license/bkniffler/alpacka.svg?style=flat-square" alt="License">
   </a>
   <br />
