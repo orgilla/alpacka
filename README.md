@@ -6,7 +6,7 @@
 
 <div align="center">
   <h2>Alpacka</h2>
-  <strong>A webpack abstractionn layer to target multiple platforms</strong>
+  <strong>A webpack abstraction layer to target multiple platforms</strong>
   <br />
   <br />
   <a href="https://travis-ci.org/bkniffler/alpacka">
@@ -60,15 +60,15 @@ node dev
 
 ## Runtimes
 
-* web: Progressive Web Applications with offline support
-* lambda: NodeJS for AWS Lambda
-* server: Classic server for API and/or SSR
-* electron: Electron runtime for desktop applications
+* [@alpacka/runtime-web](https://github.com/bkniffler/alpacka/tree/master/packages/runtime-web): Progressive Web Applications with offline support
+* [@alpacka/runtime-lambda](https://github.com/bkniffler/alpacka/tree/master/packages/runtime-lambda): NodeJS for AWS Lambda
+* [@alpacka/runtime-server](https://github.com/bkniffler/alpacka/tree/master/packages/runtime-server): Classic server for API and/or SSR
+* [@alpacka/runtime-electron](https://github.com/bkniffler/alpacka/tree/master/packages/runtime-electron): Electron runtime for desktop applications
 
 ## Plugins
 
-* babel: Babel plugin (currently react only)
-* less: Less style plugin
+* [@alpacka/plugin-babel](https://github.com/bkniffler/alpacka/tree/master/packages/plugin-babel): Babel plugin (currently react only)
+* [@alpacka/plugin-less](https://github.com/bkniffler/alpacka/tree/master/packages/plugin-less): Less style plugin
 
 ## Libraries
 
