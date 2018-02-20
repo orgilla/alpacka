@@ -37,6 +37,8 @@
   <br />
 </div>
 
+A simple wrapper around webpack. It supports different plugins and runtimes as well as dev (hot reload) and build-modes.
+
 * 4 runtimes: Electron, Web, Server and Lambda
 * Plugins: Less and Babel, and easily add your own
 * Hot-Reload: On every runtime!
@@ -44,8 +46,6 @@
 * Offline: Ready for web runtime
 * Libraries: Will also take care of your libraries
 * Deploy: Use netlify, heroko, serverless, electron-builder to easily deploy your apps, servers, and services
-
-A simple wrapper around webpack. It supports different plugins and runtimes as well as dev (hot reload) and build-modes.
 
 ```bash
 npm i @alpacka/dev @alpacka/runtime-web @alpacka/plugin-babel
