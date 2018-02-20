@@ -12,7 +12,7 @@ it('build for web/static (with babel)', () =>
     {
       silent: true
     }
-  ));
+  ), 30000);
 
 it('build for web/serverless (with babel)', () =>
   build(
@@ -26,4 +26,4 @@ it('build for web/serverless (with babel)', () =>
     {
       silent: true
     }
-  ));
+  ), 30000);
