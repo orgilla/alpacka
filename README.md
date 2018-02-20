@@ -37,6 +37,14 @@
   <br />
 </div>
 
+* 4 runtimes: Electron, Web, Server and Lambda
+* Plugins: Less and Babel, and easily add your own
+* Hot-Reload: On every runtime!
+* Code-Splitting: For web runtime
+* Offline: Ready for web runtime
+* Libraries: Will also take care of your libraries
+* Deploy: Use netlify, heroko, serverless, electron-builder to easily deploy your apps, servers, and services
+
 A simple wrapper around webpack. It supports different plugins and runtimes as well as dev (hot reload) and build-modes.
 
 ```bash
@@ -86,12 +94,17 @@ npm i @alpacka/task
 }
 ```
 
+## Motivation
+
+We've all been there. Writing webpack configs hurt, especially if you try more complex stuff. So bundling config into packages and reuse them whenever needed is neat. You want .less? Just add the .less plugin, Alpacka will add the relevant rules and css extraction. Want to target electron? Just add the electron runtime. Never again loos precious days of getting that config to work.
+
 ## Contributing
+
 Contributions always welcome, feel free to PR with new features/plugins or bugfixes if you like.
 
 ## Ref
+
 * [webpack](https://github.com/webpack/webpack): Webpack is obviously more difficult to use directly, but also very versatile if you know what you're doing
 * [create-react-app](https://github.com/facebook/create-react-app): CRA is a CLI tool to set-up a react app extremly quickly. It will allow to disconnect from the default config any time, though you'll have to maintain your own webpack config.
 * [react-universally](https://github.com/ctrlplusb/react-universally): A very nice boilerplate for react apps
 * [next.js](https://github.com/zeit/next.js/): Powerful and popular, but very monolithic compared to Alpacka, since Alpacka only provides the build tools (including a plugin system) plus different runtimes.
-
