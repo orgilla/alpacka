@@ -47,6 +47,8 @@ A simple wrapper around webpack. It supports different plugins and runtimes as w
 * Libraries: Will also take care of your libraries
 * Deploy: Use netlify, heroko, serverless, electron-builder to easily deploy your apps, servers, and services
 
+## Kickstart
+
 ```bash
 npm i @alpacka/dev @alpacka/runtime-web @alpacka/plugin-babel
 ```
