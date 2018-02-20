@@ -1,0 +1,19 @@
+{
+  "version": "0.9.0",
+  "name": "@alpacka/run-web",
+  "description": "",
+  "author": "Benjamin Kniffler <bkniffler@me.com>",
+  "contributors": [
+    "Benjamin Kniffler <bkniffler@me.com>",
+    "Philipp Achenbach <alpacka@philipp-achenbach.de>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "copy-webpack-plugin": "^4.4.1",
+    "html-webpack-plugin": "^2.30.1",
+    "offline-plugin": "^4.8.5"
+  },
+  "devDependencies": {
+    "webpack": "^3.11.0"
+  }
+}

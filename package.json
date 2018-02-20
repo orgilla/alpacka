@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "workspaces": ["packages/*"],
+  "version": "0.9.0",
+  "name": "alpacka",
+  "description": "",
+  "scripts": {
+    "test": "jest",
+    "prepublish": "yarn test",
+    "up": "yarn upgrade-interactive --latest",
+    "init": "lerna init --independent",
+    "watch": "alpacka watch",
+    "lp": "lerna publish --registry=https://registry.npmjs.org/",
+    "lpf":
+      "lerna publish --registry=https://registry.npmjs.org/ --force-publish",
+    "lc": "lerna exec --concurrency 1 -- del 'package-lock.json' 'node_modules'"
+  },
+  "engines": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bkniffler/alpacka.git"
+  },
+  "keywords": ["react", "universal", "javascript", "express", "webpack"],
+  "author": "Benjamin Kniffler <bkniffler@me.com>",
+  "contributors": [
+    "Benjamin Kniffler <bkniffler@me.com>",
+    "Philipp Achenbach <alpacka@philipp-achenbach.de>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bkniffler/alpacka/issues"
+  },
+  "homepage": "https://github.com/bkniffler/alpacka#readme",
+  "dependencies": {
+    "lerna": "^2.9.0"
+  },
+  "devDependencies": {
+    "jest": "^22.3.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}

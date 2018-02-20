@@ -1,0 +1,22 @@
+{
+  "version": "0.9.0",
+  "name": "@alpacka/plugin-babel",
+  "description": "",
+  "author": "Benjamin Kniffler <bkniffler@me.com>",
+  "contributors": [
+    "Benjamin Kniffler <bkniffler@me.com>",
+    "Philipp Achenbach <alpacka@philipp-achenbach.de>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "cache-loader": "^1.2.0",
+    "extract-hoc": "0.0.5",
+    "@alpacka/babel": "^0.9.0",
+    "react-hot-loader": "4.0.0-beta.15",
+    "uglifyjs-webpack-plugin": "^1.1.8"
+  },
+  "devDependencies": {
+    "webpack": "^3.11.0"
+  }
+}
