@@ -11,13 +11,13 @@ A simple wrapper around webpack. It supports different plugins and runtimes as w
 For applications
 
 ```bash
-npm i @alpacka/run @alpacka/run-web @alpacka/plugin-babel
+npm i @alpacka/dev @alpacka/run-web @alpacka/plugin-babel
 ```
 
 ```jsx
 // dev.js
 const port = parseInt(process.env.PORT || 3000, 10);
-require('@alpacka/run').dev({
+require('@alpacka/dev')({
   runtime: 'web',
   plugins: ['babel'],
   port,

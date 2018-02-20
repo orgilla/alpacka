@@ -22,9 +22,9 @@ const resolvePlugin = nameOrFunc => {
     return require(`@alpacka/plugin-${nameOrFunc}`);
   } else if (
     typeof nameOrFunc === 'string' &&
-    exists(`@alpacka/run-${nameOrFunc}`)
+    exists(`@alpacka/runtime-${nameOrFunc}`)
   ) {
-    return require(`@alpacka/run-${nameOrFunc}`);
+    return require(`@alpacka/runtime-${nameOrFunc}`);
   } else if (typeof nameOrFunc === 'string' && exists(nameOrFunc)) {
     return require(nameOrFunc);
   }

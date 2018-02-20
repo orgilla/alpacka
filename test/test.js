@@ -1,8 +1,8 @@
 const path = require('path');
-const run = require('@alpacka/run');
+const build = require('@alpacka/build');
 
 it('build for web/static (with babel)', () =>
-  run.build(
+  build(
     {
       runtime: 'web',
       entry: path.resolve(__dirname, 'src'),
@@ -15,7 +15,7 @@ it('build for web/static (with babel)', () =>
   ));
 
 it('build for web/serverless (with babel)', () =>
-  run.build(
+  build(
     {
       runtime: 'web',
       serverMode: 'serverless',

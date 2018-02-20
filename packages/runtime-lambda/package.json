@@ -1,0 +1,21 @@
+{
+  "version": "0.9.1",
+  "name": "@alpacka/runtime-lambda",
+  "description": "",
+  "author": "Benjamin Kniffler <bkniffler@me.com>",
+  "contributors": [
+    "Benjamin Kniffler <bkniffler@me.com>",
+    "Philipp Achenbach <alpacka@philipp-achenbach.de>"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^3.11.0"
+  },
+  "dependencies": {
+    "copy-webpack-plugin": "^4.4.1",
+    "express": "^4.16.2",
+    "json-loader": "^0.5.7",
+    "start-server-webpack-plugin": "^2.2.1",
+    "yaml-loader": "^0.5.0"
+  }
+}
