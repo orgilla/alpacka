@@ -39,8 +39,6 @@
 
 A simple wrapper around webpack. It supports different plugins and runtimes as well as dev (hot reload) and build-modes.
 
-For applications
-
 ```bash
 npm i @alpacka/dev @alpacka/runtime-web @alpacka/plugin-babel
 ```
@@ -52,6 +50,9 @@ require('@alpacka/dev')({
   plugins: ['babel'],
   port: 3000,
 });
+
+// src/index.js
+export default () => 'Hi!';
 ```
 
 ```bash
@@ -77,3 +78,13 @@ Alpacka can compile libraries with lerna monorepository structures. It will comp
 ```bash
 npm i @alpacka/task
 ```
+
+```json
+// package.json
+"scripts": {
+  "watch": "alpacka watch"
+}
+```
+
+## Contributing
+Contributions always welcome, feel free to PR with new features/plugins or bugfixes if you like.
