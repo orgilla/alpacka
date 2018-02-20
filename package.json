@@ -10,7 +10,8 @@
     "up": "yarn upgrade-interactive --latest",
     "init": "lerna init --independent",
     "watch": "alpacka watch",
-    "lp": "lerna publish --registry=https://registry.npmjs.org/",
+    "lp":
+      "yarn run prepublish && lerna publish --registry=https://registry.npmjs.org/",
     "lpf":
       "lerna publish --registry=https://registry.npmjs.org/ --force-publish",
     "lc": "lerna exec --concurrency 1 -- del 'package-lock.json' 'node_modules'"
