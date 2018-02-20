@@ -88,3 +88,10 @@ npm i @alpacka/task
 
 ## Contributing
 Contributions always welcome, feel free to PR with new features/plugins or bugfixes if you like.
+
+## Ref
+* [webpack](https://github.com/webpack/webpack): Webpack is obviously more difficult to use directly, but also very versatile if you know what you're doing
+* [create-react-app](https://github.com/facebook/create-react-app): CRA is a CLI tool to set-up a react app extremly quickly. It will allow to disconnect from the default config any time, though you'll have to maintain your own webpack config.
+* [react-universally](https://github.com/ctrlplusb/react-universally): A very nice boilerplate for react apps
+* [next.js](https://github.com/zeit/next.js/): Powerful and popular, but very monolithic compared to Alpacka, since Alpacka only provides the build tools (including a plugin system) plus different runtimes.
+
