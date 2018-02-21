@@ -43,7 +43,7 @@ module.exports = (
       config.plugins.push(
         new HtmlWebpackPlugin({
           filename: 'offline.html',
-          template: `babel-loader!${path.resolve(__dirname, 'serverless.js')}`,
+          template: path.resolve(__dirname, 'serverless.js'),
           inject: false
         })
       );
@@ -70,7 +70,7 @@ module.exports = (
       config.plugins.push(
         new HtmlWebpackPlugin({
           filename: 'index.html',
-          template: `babel-loader!${path.resolve(__dirname, 'serverless.js')}`,
+          template: path.resolve(__dirname, 'serverless.js'),
           minify: false,
           production: true,
           inject: false

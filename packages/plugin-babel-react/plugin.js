@@ -13,11 +13,11 @@ module.exports = (config, options) => {
     folder,
     transform
   } = options;
+  config.resolveLoader.modules.push(resolve(__dirname, 'node_modules'));
   if (isProd && isWeb) {
     console.log(
       'MANGLE = FALSE, https://github.com/graphql/graphql-js/issues/1182'
     );
-    config.resolveLoader.modules.push(resolve(__dirname, 'node_modules'));
 
     // config.plugins.push(new LodashModuleReplacementPlugin()),
     config.plugins.push(
