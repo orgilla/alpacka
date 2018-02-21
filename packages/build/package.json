@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "0.9.12",
+  "version": "0.9.13",
   "name": "@alpacka/build",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
@@ -10,6 +10,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@alpacka/core": "^0.9.12"
+    "@alpacka/core": "^0.9.13"
   }
 }
