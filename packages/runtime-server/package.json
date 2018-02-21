@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "0.9.9",
+  "version": "0.9.1",
   "name": "@alpacka/runtime-server",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
