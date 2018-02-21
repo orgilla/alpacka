@@ -3,6 +3,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (config, options) => {
   const { isProd, isWeb, isNode, isDev, appRoot, folder, target } = options;
+  config.resolveLoader.modules.push(resolve(__dirname, 'node_modules'));
+
   const modifyVars = Object.assign(
     {},
     {
@@ -12,7 +14,7 @@ module.exports = (config, options) => {
       'font-family':
         '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
       'font-size-base': '15px',
-      'primary-color': '#8e44ad',
+      'primary-color': '#8e44ad'
     },
     options.modifyVars || {}
   );
@@ -20,7 +22,7 @@ module.exports = (config, options) => {
     config.plugins.push(
       new ExtractTextPlugin({
         allChunks: true,
-        filename: isProd ? '[name].[hash].css' : '[name].css',
+        filename: isProd ? '[name].[hash].css' : '[name].css'
       })
     );
     config.module.rules.push({
@@ -35,20 +37,20 @@ module.exports = (config, options) => {
                 folder,
                 'cache',
                 `${target}-less`
-              ),
-            },
+              )
+            }
           },
           {
             loader: 'css-loader',
-            options: { modules: false },
+            options: { modules: false }
           },
           {
             loader: 'less-loader',
-            options: { modifyVars },
-          },
+            options: { modifyVars }
+          }
         ],
-        fallback: 'style-loader',
-      }),
+        fallback: 'style-loader'
+      })
     });
   } else if (isWeb) {
     config.module.rules.push({
@@ -57,27 +59,27 @@ module.exports = (config, options) => {
         {
           loader: 'cache-loader',
           options: {
-            cacheDirectory: resolve(appRoot, folder, 'cache', `${target}-less`),
-          },
+            cacheDirectory: resolve(appRoot, folder, 'cache', `${target}-less`)
+          }
         },
         {
           loader: 'style-loader',
-          options: { insertAt: 'top', hmr: isDev },
+          options: { insertAt: 'top', hmr: isDev }
         },
         {
           loader: 'css-loader',
-          options: { modules: false, sourceMap: true },
+          options: { modules: false, sourceMap: true }
         },
         {
           loader: 'less-loader',
-          options: { modifyVars, sourceMap: true },
-        },
-      ],
+          options: { modifyVars, sourceMap: true }
+        }
+      ]
     });
   } else if (isNode) {
     config.module.rules.push({
       test: /\.(less|css)$/,
-      loader: 'ignore-loader',
+      loader: 'ignore-loader'
     });
   }
 

@@ -105,9 +105,13 @@ module.exports = options => {
         alias
       )
     },
-    /* resolveLoader: {
-      modules: [path.resolve(appRoot, 'node_modules')],
-    }, */
+    resolveLoader: {
+      modules: [
+        path.resolve(appRoot, 'node_modules'),
+        path.resolve(appRoot, '..', '..', 'node_modules'),
+        path.resolve(appRoot, 'src')
+      ]
+    },
     module: {
       rules: [
         {
