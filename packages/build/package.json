@@ -1,5 +1,5 @@
 {
-  "version": "0.9.2",
+  "version": "0.9.5",
   "name": "@alpacka/build",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
@@ -9,6 +9,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@alpacka/core": "^0.9.2"
+    "@alpacka/core": "^0.9.5"
   }
 }
