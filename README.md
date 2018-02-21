@@ -50,14 +50,14 @@ A simple wrapper around webpack. It supports different plugins and runtimes as w
 ## Kickstart
 
 ```bash
-npm i @alpacka/dev @alpacka/runtime-web @alpacka/plugin-babel
+npm i @alpacka/dev @alpacka/runtime-web @alpacka/plugin-babel-react
 ```
 
 ```jsx
 // dev.js
 require('@alpacka/dev')({
   runtime: 'web',
-  plugins: ['babel'],
+  plugins: ['babel-react'],
   port: 3000,
 });
 
@@ -78,7 +78,12 @@ node dev
 
 ## Plugins
 
-* [@alpacka/plugin-babel](https://github.com/bkniffler/alpacka/tree/master/packages/plugin-babel): Babel plugin (currently react only)
+### JavaScript
+
+* [@alpacka/plugin-babel-react](https://github.com/bkniffler/alpacka/tree/master/packages/plugin-babel-react): React-Babel plugin
+
+### Styles
+
 * [@alpacka/plugin-less](https://github.com/bkniffler/alpacka/tree/master/packages/plugin-less): Less style plugin
 
 ## Libraries
@@ -86,15 +91,17 @@ node dev
 Alpacka can compile libraries with lerna monorepository structures. It will compile all .es6 files to .js. There is a watch mode for local development and a build mode for after
 
 ```bash
-npm i @alpacka/task
+npm i @alpacka/task @alpacka/plugin-babel-react
 ```
 
 ```json
 // package.json
 "scripts": {
-  "watch": "alpacka watch"
+  "watch": "alpacka watch --config babel-react"
 }
 ```
+
+For help, use `alpacka --help`
 
 ## Motivation
 

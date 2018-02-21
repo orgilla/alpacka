@@ -1,5 +1,6 @@
 const { resolve } = require('path');
 const babel = require('./config');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (config, options) => {
   const {
@@ -13,7 +14,6 @@ module.exports = (config, options) => {
     transform
   } = options;
   if (isProd && isWeb) {
-    const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
     console.log(
       'MANGLE = FALSE, https://github.com/graphql/graphql-js/issues/1182'
     );

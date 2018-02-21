@@ -20,10 +20,12 @@ const resolvePackages = (packages, r) => {
     return result;
   }
   const root = path.isAbsolute(r) ? r : path.resolve(process.cwd(), r);
-  if (exists(path.resolve(root, 'lerna.json'))) {
-    result = require(path.resolve(root, 'lerna.json')).packages;
-  } else if (exists(path.resolve(root, 'package.json'))) {
-    result = require(path.resolve(root, 'package.json')).workspaces;
+  const lernaPath = path.resolve(root, 'lerna.json');
+  const pckgJsonPath = path.resolve(root, 'package.json');
+  if (exists(lernaPath)) {
+    result = require(lernaPath).packages; // eslint-disable-line
+  } else if (exists(pckgJsonPath)) {
+    result = require(pckgJsonPath).workspaces; // eslint-disable-line
   }
   if (!result || result.length === 0) {
     throw new Error(
@@ -34,9 +36,9 @@ const resolvePackages = (packages, r) => {
 };
 const resolvePlugin = name => {
   if (exists(`@alpacka/plugin-${name}/config`)) {
-    return require(`@alpacka/plugin-${name}/config`);
+    return require(`@alpacka/plugin-${name}/config`); // eslint-disable-line
   } else if (exists(name)) {
-    return require(name);
+    return require(name); // eslint-disable-line
   }
   throw new Error(
     `${name} not found (tried to resolve '@alpacka/plugin-${name}/config' and '${name}')`
