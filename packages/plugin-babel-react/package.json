@@ -1,6 +1,6 @@
 {
   "version": "0.9.1",
-  "name": "@alpacka/babel",
+  "name": "@alpacka/plugin-babel-react",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
   "contributors": [
@@ -9,6 +9,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "babel-loader": "^7.1.2",
     "babel-core": "6.25.0",
     "babel-plugin-dynamic-import-node": "1.1.0",
     "babel-plugin-import": "1.6.3",
@@ -28,6 +29,13 @@
     "babel-plugin-transform-runtime": "6.23.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.6.1",
-    "babel-preset-react": "6.24.1"
+    "babel-preset-react": "6.24.1",
+    "cache-loader": "^1.2.0",
+    "extract-hoc": "0.0.5",
+    "react-hot-loader": "4.0.0-beta.15",
+    "uglifyjs-webpack-plugin": "^1.1.8"
+  },
+  "devDependencies": {
+    "webpack": "^3.11.0"
   }
 }

@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const babel = require('./config');
 
 module.exports = (config, options) => {
   const {
@@ -49,8 +50,7 @@ module.exports = (config, options) => {
       })
     );
   }
-
-  const babelOptions = require('@alpacka/babel')({ isDev, transform });
+  const babelOptions = babel({ isDev, transform });
 
   if (isProd) {
     // babelOptions.plugins.push('graphql-tag');

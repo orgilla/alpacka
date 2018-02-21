@@ -5,42 +5,42 @@ const newer = require('gulp-changed');
 const babel = require('gulp-babel');
 const watch = require('gulp-watch');
 const debug = require('gulp-debug');
-const path = require('path');
-const babelOptions = require('@alpacka/babel')({ isLibrary: true });
 
 process.env.NODE_ENV = 'production';
 
-const root = process.cwd();
-
-const { packages } = require(path.resolve(root, 'lerna.json'));
-
-const src = [];
-packages.forEach(x => {
-  src.push(`${root}/${x}*/*.tsx`);
-  src.push(`${root}/${x}*/*.ts`);
-  src.push(`${root}/${x}*/*.es6`);
-  src.push(`!${root}/${x}*/*.d.ts`);
-  src.push(`!${root}/${x}*/*.d.tsx`);
-  src.push(`!${root}/${x}/node_modules/**/*`);
-  src.push(`!${root}/${x}/node_modules/**`);
-  src.push(`!${root}/${x}/node_modules`);
-});
 const dest = '.';
 
-const compile = x =>
-  x
-    .pipe(plumber())
-    .pipe(debug())
-    // .pipe(newer(dest, { extension: '.js' }))
-    .pipe(sourcemaps.init())
-    .pipe(babel(babelOptions))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(dest));
+const init = ({ plugin, packages, root, extensions, force }) => {
+  const babelOptions = plugin({ isLibrary: true });
+  const compile = x =>
+    x
+      .pipe(plumber())
+      .pipe(debug())
+      .pipe(newer(dest, { extension: force ? '.xyz' : '.js' }))
+      .pipe(sourcemaps.init())
+      .pipe(babel(babelOptions))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(dest));
+  const src = [];
+  packages.forEach(x => {
+    extensions.forEach(ex => {
+      src.push(`${root}/${x}*/*.${ex}`);
+    });
+    src.push(`!${root}/${x}*/*.d.ts`);
+    src.push(`!${root}/${x}*/*.d.tsx`);
+    src.push(`!${root}/${x}/node_modules/**/*`);
+    src.push(`!${root}/${x}/node_modules/**`);
+    src.push(`!${root}/${x}/node_modules`);
+  });
+  return { compile, src };
+};
 
-exports.watch = () => {
+exports.watch = config => {
+  const { compile, src } = init(config);
   compile(watch(src, { ignoreInitial: false, base: dest, dot: true }));
 };
 
-exports.build = () => {
-  compile(watch(src, { ignoreInitial: false, base: dest, dot: true }));
+exports.build = config => {
+  const { compile, src } = init(config);
+  compile(gulp.src(src));
 };

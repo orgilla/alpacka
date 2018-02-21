@@ -15,15 +15,15 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
     [
       require.resolve('babel-plugin-transform-object-rest-spread'),
       {
-        useBuiltIns: true,
-      },
+        useBuiltIns: true
+      }
     ],
     // Transforms JSX
     [
       require.resolve('babel-plugin-transform-react-jsx'),
       {
-        useBuiltIns: true,
-      },
+        useBuiltIns: true
+      }
     ],
     // Polyfills the runtime needed for async/await and generators
     [
@@ -31,9 +31,9 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
       {
         helpers: false,
         polyfill: false,
-        regenerator: true,
-      },
-    ],
+        regenerator: true
+      }
+    ]
   ];
 
   if (isDev || isTest) {
@@ -47,7 +47,7 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
       // Adds component stack to warning messages
       require.resolve('babel-plugin-transform-react-jsx-source'),
       // Adds __self attribute to JSX which React will use for some warnings
-      require.resolve('babel-plugin-transform-react-jsx-self'),
+      require.resolve('babel-plugin-transform-react-jsx-self')
     ]);
   }
 
@@ -59,19 +59,19 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
           require('babel-preset-env').default,
           {
             targets: {
-              node: 'current',
-            },
-          },
+              node: 'current'
+            }
+          }
         ],
         // JSX, Flow
-        require.resolve('babel-preset-react'),
+        require.resolve('babel-preset-react')
       ],
       plugins: plugins.concat([
         // Compiles import() to a deferred require()
-        require.resolve('babel-plugin-dynamic-import-node'),
-      ]),
+        require.resolve('babel-plugin-dynamic-import-node')
+      ])
     };
-  } else {
+  } 
     return {
       presets: [
         // Latest stable ECMAScript features
@@ -84,16 +84,16 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
               // We currently minify with uglify
               // Remove after https://github.com/mishoo/UglifyJS2/issues/448
               uglify: true,
-              node: '6.10',
+              node: '6.10'
             },
             // Disable polyfill transforms
             useBuiltIns: false,
             // Do not transform modules to CJS
-            modules: isLibrary ? 'commonjs' : false,
-          },
+            modules: isLibrary ? 'commonjs' : false
+          }
         ],
         // JSX, Flow
-        require.resolve('babel-preset-react'),
+        require.resolve('babel-preset-react')
       ],
       plugins: plugins.concat([
         // function* () { yield 42; yield 43; }
@@ -101,8 +101,8 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
           require.resolve('babel-plugin-transform-regenerator'),
           {
             // Async functions are converted to generators by babel-preset-env
-            async: false,
-          },
+            async: false
+          }
         ],
         // Adds syntax support for import()
         require.resolve('babel-plugin-syntax-dynamic-import'),
@@ -110,7 +110,7 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
         require.resolve('babel-plugin-lodash'),
         [
           require.resolve('babel-plugin-import'),
-          { libraryName: 'antd', style: true },
+          { libraryName: 'antd', style: true }
         ],
         [
           require.resolve('babel-plugin-transform-imports'),
@@ -118,26 +118,26 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
             antd: {
               transform: 'antd/lib/${member}',
               kebabCase: true,
-              preventFullImport: true,
+              preventFullImport: true
             },
             'date-fns': {
               transform: 'date-fns/${member}',
               preventFullImport: true,
-              camelCase: true,
+              camelCase: true
             },
             'olymp-icons': {
               transform: 'olymp-icons/lib/${member}',
               kebabCase: true,
-              preventFullImport: true,
+              preventFullImport: true
             },
             icon88: {
               transform: 'icon88/lib/${member}',
               kebabCase: true,
-              preventFullImport: true,
-            },
-          },
-        ],
-      ]),
+              preventFullImport: true
+            }
+          }
+        ]
+      ])
     };
 
     if (env === 'production') {
@@ -148,5 +148,5 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
       //   require.resolve('babel-plugin-transform-react-constant-elements')
       // ]);
     }
-  }
+  
 };
