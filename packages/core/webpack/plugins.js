@@ -6,7 +6,18 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = (
   config,
-  { isWeb, isNode, isElectron, isDev, port, isProd, isLinked, output, env = {} }
+  {
+    isWeb,
+    isNode,
+    isElectron,
+    isDev,
+    port,
+    isProd,
+    isLinked,
+    output,
+    env = {},
+    outputFile
+  }
 ) => {
   config.plugins = [
     new webpack.LoaderOptionsPlugin({
@@ -56,7 +67,7 @@ module.exports = (
     if (isDev) {
       config.plugins.push(
         new StartServerPlugin({
-          name: 'app.js'
+          // name: `${outputFile}.js` || 'main.js'
           // nodeArgs: [`--inspect=${devPort + 1}`], // allow debugging
         })
       );
@@ -99,10 +110,10 @@ module.exports = (
       config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
     }
     // config.plugins.push(new webpack.optimize.LimitChunkCountPlugin({ minChunkSize: 10000 }));
-    const filename = isProd ? '[name].[chunkhash].js' : '[name].js';
+    const filename = isProd ? output.chunkFileName : output.filename;
     config.plugins.push(
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'app',
+        name: 'main',
         filename
         // minChunks: 2,
       })

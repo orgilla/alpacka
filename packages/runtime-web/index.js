@@ -16,7 +16,7 @@ module.exports = (
   },
   webpack
 ) => {
-  //  config.entry.app.push('olymp/dom');
+  //  config.entry.push('olymp/dom');
   config.resolve.alias.__resourceQuery = path.resolve(appRoot, 'src');
 
   if (!Array.isArray(statics)) {

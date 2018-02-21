@@ -39,7 +39,8 @@ module.exports = options => {
     alias = {},
     plugins = [],
     paths,
-    runtime
+    runtime,
+    outputFile
   } = options;
 
   let target = options.target;
@@ -151,13 +152,6 @@ module.exports = options => {
     ? 'cheap-module-source-map'
     : 'cheap-module-source-map';
 
-  // inline-source-map for web-dev
-  if (isProd && isWeb && !isElectron) {
-    config.output.filename = '[name].[contenthash].js';
-  } else {
-    config.output.filename = '[name].js';
-  }
-
   // target && node settings
   if (isServer) {
     config.target = 'node';
@@ -194,12 +188,18 @@ module.exports = options => {
     };
   }
 
+  // inline-source-map for web-dev
+  if (isProd && isWeb && !isElectron) {
+    config.output.filename = '[name].[contenthash].js';
+  } else {
+    config.output.filename = '[name].js';
+  }
+
   if (isNode || isElectron) {
     config.output.filename = '[name].js';
   } else {
-    const filename = isProd ? '[name].[chunkhash].js' : '[name].js';
-    config.output.filename = filename;
-    config.output.chunkFilename = filename;
+    config.output.filename = '[name].js';
+    config.output.chunkFilename = '[name].[chunkhash].js';
   }
 
   const args = Object.assign({}, options, {

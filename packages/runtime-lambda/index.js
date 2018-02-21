@@ -5,9 +5,7 @@ const WebpackShellPlugin = require('./webpack-shell-plugin');
 const path = require('path');
 
 module.exports = (config, { isProd, appRoot, output }) => {
-  config.entry.index = config.entry.app;
-  delete config.entry.app;
-  config.entry.index.push(path.resolve(__dirname, 'entry.js'));
+  config.entry.push(path.resolve(__dirname, 'entry.js'));
 
   config.module.rules.push({
     test: /\.(yaml|yml)$/,
