@@ -12,12 +12,19 @@ module.exports = (
     appRoot,
     target,
     output,
+    template,
     statics = []
   },
   webpack
 ) => {
   //  config.entry.push('olymp/dom');
   config.resolve.alias.__resourceQuery = path.resolve(appRoot, 'src');
+
+  if (!template) {
+    throw new Error(
+      'Please provide a template (.js file that exports a html template)'
+    );
+  }
 
   if (!Array.isArray(statics)) {
     statics = [statics];
@@ -43,7 +50,7 @@ module.exports = (
       config.plugins.push(
         new HtmlWebpackPlugin({
           filename: 'offline.html',
-          template: path.resolve(__dirname, 'serverless.js'),
+          template,
           inject: false
         })
       );
@@ -70,7 +77,7 @@ module.exports = (
       config.plugins.push(
         new HtmlWebpackPlugin({
           filename: 'index.html',
-          template: path.resolve(__dirname, 'serverless.js'),
+          template,
           minify: false,
           production: true,
           inject: false
@@ -78,18 +85,10 @@ module.exports = (
       );
     }
     config.plugins.push(
-      new CopyWebpackPlugin([
-        {
-          context: path.resolve(__dirname, 'public'),
-          from: '**/*',
-          to: output
-        }
-      ])
-    );
-    config.plugins.push(
       new CopyWebpackPlugin(
-        statics.map(dir => ({
-          context: path.isAbsolute(dir) ? dir : path.resolve(appRoot, dir),
+        [path.resolve(__dirname, 'public')].concat(statics).map(context => ({
+          // context: path.isAbsolute(dir) ? dir : path.resolve(appRoot, dir),
+          context,
           from: '**/*',
           to: output
         }))
