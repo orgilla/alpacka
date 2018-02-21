@@ -7,6 +7,7 @@ it(
     build(
       {
         runtime: 'web',
+        template: path.resolve(__dirname, 'template.js'),
         entry: path.resolve(__dirname, 'src'),
         plugins: ['babel-react'],
         port: 3000
@@ -24,6 +25,7 @@ it(
     build(
       {
         runtime: 'web',
+        template: path.resolve(__dirname, 'template.js'),
         serverMode: 'serverless',
         entry: path.resolve(__dirname, 'src'),
         plugins: ['babel-react'],
