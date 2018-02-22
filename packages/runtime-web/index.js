@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TemplatePlugin = require('./webpack-template-plugin');
 
 const path = require('path');
 
@@ -48,10 +48,9 @@ module.exports = (
     if (isProd) {
       const OfflinePlugin = require('offline-plugin');
       config.plugins.push(
-        new HtmlWebpackPlugin({
+        new TemplatePlugin({
           filename: 'offline.html',
-          template,
-          inject: false
+          template
         })
       );
       config.plugins.push(
@@ -60,7 +59,7 @@ module.exports = (
           // externals: ['https://cdn.polyfill.io/v2/polyfill.min.js?callback=POLY'],
           autoUpdate: 1000 * 60 * 1,
           caches: {
-            main: ['app.*.js', 'offline.html'],
+            main: ['main.*.js', 'offline.html'],
             additional: [':externals:'],
             optional: ['*.js']
           },
@@ -75,12 +74,9 @@ module.exports = (
     }
     if (serverMode === 'serverless' || serverMode === 'static') {
       config.plugins.push(
-        new HtmlWebpackPlugin({
+        new TemplatePlugin({
           filename: 'index.html',
-          template,
-          minify: false,
-          production: true,
-          inject: false
+          template
         })
       );
     }

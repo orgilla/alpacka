@@ -189,17 +189,12 @@ module.exports = options => {
   }
 
   // inline-source-map for web-dev
-  if (isProd && isWeb && !isElectron) {
-    config.output.filename = '[name].[contenthash].js';
-  } else {
-    config.output.filename = '[name].js';
-  }
-
-  if (isNode || isElectron) {
-    config.output.filename = '[name].js';
-  } else {
-    config.output.filename = '[name].js';
+  if (isProd && target === 'web') {
+    config.output.filename = '[name].[chunkhash].js';
     config.output.chunkFilename = '[name].[chunkhash].js';
+  } else {
+    config.output.filename = '[name].js';
+    config.output.chunkFilename = '[name].js';
   }
 
   const args = Object.assign({}, options, {
