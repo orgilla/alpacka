@@ -46,13 +46,14 @@ const resolvePlugin = name => {
 };
 
 module.exports = argv => {
-  const packages = resolvePackages(argv.packages, argv.root);
+  const root = argv.root || process.cwd();
+  const packages = resolvePackages(argv.packages, root);
   const plugin = resolvePlugin(argv.config || 'babel-react');
   return {
     force: argv.force || false,
     plugin,
     packages,
-    root: argv.root || process.cwd(),
+    root,
     extensions: argv.extensions || defaultExtensions
   };
 };
