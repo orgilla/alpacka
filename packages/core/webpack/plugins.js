@@ -72,12 +72,20 @@ module.exports = (
     );
   }
 
-  // LimitChunkCount on all but production-web
-  if (isNode) {
+  if (analyze === true) {
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+      .BundleAnalyzerPlugin;
     config.plugins.push(
-      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
+      new BundleAnalyzerPlugin({
+        reportFilename: './_report.html',
+        analyzerMode: 'static'
+        // generateStatsFile: false,
+      })
     );
-  } else if (isWeb) {
+  }
+
+  // LimitChunkCount on all but production-web
+  if (isWeb && isProd) {
     config.plugins.push(
       new AssetsPlugin({
         filename: 'assets.json',
@@ -85,17 +93,7 @@ module.exports = (
       })
     );
     config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
-    if (analyze === true) {
-      const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-        .BundleAnalyzerPlugin;
-      config.plugins.push(
-        new BundleAnalyzerPlugin({
-          reportFilename: './_report.html',
-          analyzerMode: 'static'
-          // generateStatsFile: false,
-        })
-      );
-    } else if (isProd) {
+    if (isProd) {
       config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
     }
     // config.plugins.push(new webpack.optimize.LimitChunkCountPlugin({ minChunkSize: 10000 }));
@@ -103,9 +101,15 @@ module.exports = (
     config.plugins.push(
       new webpack.optimize.CommonsChunkPlugin({
         name: 'main',
-        filename
-        // minChunks: 2,
+        filename,
+        minChunks: 2,
+        async: true,
+        children: true
       })
+    );
+  } else {
+    config.plugins.push(
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
     );
   }
 

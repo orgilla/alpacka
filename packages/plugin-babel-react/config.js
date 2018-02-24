@@ -49,6 +49,10 @@ module.exports = ({ isLibrary, isDev, isTest, transform }) => {
       // Adds __self attribute to JSX which React will use for some warnings
       require.resolve('babel-plugin-transform-react-jsx-self')
     ]);
+  } else {
+    plugins.push(
+      require.resolve('babel-plugin-transform-react-remove-prop-types')
+    );
   }
 
   if (isTest) {
@@ -72,6 +76,7 @@ module.exports = ({ isLibrary, isDev, isTest, transform }) => {
       ])
     };
   }
+
   return {
     presets: [
       // Latest stable ECMAScript features
