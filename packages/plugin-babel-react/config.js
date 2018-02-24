@@ -1,4 +1,4 @@
-module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
+module.exports = ({ isLibrary, isDev, isTest, transform }) => {
   const plugins = [
     // Experimental macros support. Will be documented after it's had some time
     // in the wild.
@@ -71,49 +71,51 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
         require.resolve('babel-plugin-dynamic-import-node')
       ])
     };
-  } 
-    return {
-      presets: [
-        // Latest stable ECMAScript features
-        [
-          require.resolve('babel-preset-env'),
-          {
-            targets: {
-              // React parses on ie 9, so we should too
-              ie: 9,
-              // We currently minify with uglify
-              // Remove after https://github.com/mishoo/UglifyJS2/issues/448
-              uglify: true,
-              node: '6.10'
-            },
-            // Disable polyfill transforms
-            useBuiltIns: false,
-            // Do not transform modules to CJS
-            modules: isLibrary ? 'commonjs' : false
-          }
-        ],
-        // JSX, Flow
-        require.resolve('babel-preset-react')
+  }
+  return {
+    presets: [
+      // Latest stable ECMAScript features
+      [
+        require.resolve('babel-preset-env'),
+        {
+          targets: {
+            // React parses on ie 9, so we should too
+            ie: 9,
+            // We currently minify with uglify
+            // Remove after https://github.com/mishoo/UglifyJS2/issues/448
+            uglify: true,
+            node: '6.10'
+          },
+          // Disable polyfill transforms
+          useBuiltIns: false,
+          // Do not transform modules to CJS
+          modules: isLibrary ? 'commonjs' : false
+        }
       ],
-      plugins: plugins.concat([
-        // function* () { yield 42; yield 43; }
-        [
-          require.resolve('babel-plugin-transform-regenerator'),
-          {
-            // Async functions are converted to generators by babel-preset-env
-            async: false
-          }
-        ],
-        // Adds syntax support for import()
-        require.resolve('babel-plugin-syntax-dynamic-import'),
-        require.resolve('babel-plugin-transform-decorators-legacy'),
-        require.resolve('babel-plugin-lodash'),
-        [
-          require.resolve('babel-plugin-import'),
-          { libraryName: 'antd', style: true }
-        ],
-        [
-          require.resolve('babel-plugin-transform-imports'),
+      // JSX, Flow
+      require.resolve('babel-preset-react')
+    ],
+    plugins: plugins.concat([
+      // function* () { yield 42; yield 43; }
+      [
+        require.resolve('babel-plugin-transform-regenerator'),
+        {
+          // Async functions are converted to generators by babel-preset-env
+          async: false
+        }
+      ],
+      // Adds syntax support for import()
+      require.resolve('babel-plugin-syntax-dynamic-import'),
+      require.resolve('babel-plugin-transform-decorators-legacy'),
+      require.resolve('babel-plugin-lodash'),
+      [
+        require.resolve('babel-plugin-import'),
+        { libraryName: 'antd', style: true }
+      ],
+      [
+        require.resolve('babel-plugin-transform-imports'),
+        Object.assign(
+          {},
           {
             antd: {
               transform: 'antd/lib/${member}',
@@ -125,28 +127,24 @@ module.exports = ({ isLibrary, isDev, isFlowEnabled, isTest, transform }) => {
               preventFullImport: true,
               camelCase: true
             },
-            'olymp-icons': {
-              transform: 'olymp-icons/lib/${member}',
-              kebabCase: true,
-              preventFullImport: true
-            },
-            icon88: {
-              transform: 'icon88/lib/${member}',
+            '@filou/icons': {
+              transform: '@filou/icons/lib/${member}',
               kebabCase: true,
               preventFullImport: true
             }
-          }
-        ]
-      ])
-    };
+          },
+          transform || {}
+        )
+      ]
+    ])
+  };
 
-    if (env === 'production') {
-      // Optimization: hoist JSX that never changes out of render()
-      // Disabled because of issues: https://github.com/facebookincubator/create-react-app/issues/553
-      // TODO: Enable again when these issues are resolved.
-      // plugins.push.apply(plugins, [
-      //   require.resolve('babel-plugin-transform-react-constant-elements')
-      // ]);
-    }
-  
+  if (env === 'production') {
+    // Optimization: hoist JSX that never changes out of render()
+    // Disabled because of issues: https://github.com/facebookincubator/create-react-app/issues/553
+    // TODO: Enable again when these issues are resolved.
+    // plugins.push.apply(plugins, [
+    //   require.resolve('babel-plugin-transform-react-constant-elements')
+    // ]);
+  }
 };
