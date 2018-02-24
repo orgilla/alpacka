@@ -46,6 +46,12 @@ module.exports = (
 
   if (isWeb) {
     if (isProd) {
+      const last = config.entry[config.entry.length - 1];
+      config.entry[config.entry.length - 1] = path.resolve(
+        __dirname,
+        'offline'
+      );
+      config.entry.push(last);
       const OfflinePlugin = require('offline-plugin');
       config.plugins.push(
         new TemplatePlugin({
