@@ -6,18 +6,7 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 module.exports = (
   config,
-  {
-    isWeb,
-    isNode,
-    isElectron,
-    isDev,
-    port,
-    isProd,
-    isLinked,
-    output,
-    env = {},
-    outputFile
-  }
+  { isWeb, isNode, isElectron, isDev, port, isProd, analyze, output, env = {} }
 ) => {
   config.plugins = [
     new webpack.LoaderOptionsPlugin({
@@ -96,7 +85,7 @@ module.exports = (
       })
     );
     config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
-    if (isLinked && isProd) {
+    if (analyze === true) {
       const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
         .BundleAnalyzerPlugin;
       config.plugins.push(

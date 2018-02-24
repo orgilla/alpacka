@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = (config, { appRoot, externals = [], isNode }) => {
@@ -28,10 +29,17 @@ module.exports = (config, { appRoot, externals = [], isNode }) => {
           externals.map(key => v => v === key || v.indexOf(`${key}/`) === 0)
         )
       });
-    config.externals = [
-      getExternals(path.resolve(appRoot, 'node_modules')),
-      getExternals(path.resolve(appRoot, '..', '..', 'node_modules'))
-    ];
+    config.externals = [];
+    if (fs.existsSync(path.resolve(appRoot, 'node_modules'))) {
+      config.externals.push(
+        getExternals(path.resolve(appRoot, 'node_modules'))
+      );
+    }
+    if (fs.existsSync(path.resolve(appRoot, '..', '..', 'node_modules'))) {
+      config.externals.push(
+        getExternals(path.resolve(appRoot, '..', '..', 'node_modules'))
+      );
+    }
   }
   return config;
 };

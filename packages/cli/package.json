@@ -1,13 +1,15 @@
 {
   "version": "0.9.19",
-  "name": "@alpacka/task",
+  "name": "@alpacka/cli",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
   "contributors": [
     "Benjamin Kniffler <bkniffler@me.com>",
     "Philipp Achenbach <alpacka@philipp-achenbach.de>"
   ],
-  "bin": "./bin/alpacka.js",
+  "bin": {
+    "alpacka": "./bin/alpacka.js"
+  },
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.3.1",

@@ -31,7 +31,7 @@ exports.build = (options, args = {}) => {
   return new Promise((yay, nay) => {
     compiler.run((err, compilation) => {
       if (err) {
-        // console.error(err);
+        console.error(err);
         if (!args.silent) {
           process.exit(1);
         }
