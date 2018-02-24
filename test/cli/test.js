@@ -1,5 +1,5 @@
-const gulp = require('@alpacka/task/gulpfile');
-const init = require('@alpacka/task/init');
+const gulp = require('@alpacka/cli/gulpfile');
+const init = require('@alpacka/cli/init');
 
 it('compile .es6', () =>
   gulp.build(
