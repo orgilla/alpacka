@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "0.10.0",
+  "version": "0.10.1",
   "name": "@alpacka/plugin-babel-react",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
