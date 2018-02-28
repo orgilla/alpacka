@@ -54,19 +54,12 @@ class ElectronPlugin {
         const split = module.id.split('!');
         // get last path in module id
         const id = split[split.length - 1];
-        console.log(
-          id,
-          id.match(this.options.test),
-          hash,
-          module.resource,
-          this.hashIndex
-        );
         // if matches regex and hash is different
+        console.log(id);
         if (
           id.match(this.options.test) &&
           this.hashIndex[module.resource] !== hash
         ) {
-          console.log('LAUNCH');
           shouldRelaunch = true;
         }
 

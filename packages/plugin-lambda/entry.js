@@ -3,6 +3,7 @@ const app = require('./express').default;
 
 const server = http.createServer(app);
 let currentApp = app;
+
 const port = parseInt(process.env.PORT || 3000, 10);
 server.listen(port, '0.0.0.0', () => {
   console.log('Server listening to', port, 'in', process.env.NODE_ENV);

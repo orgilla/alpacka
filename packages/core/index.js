@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const rimraf = require('rimraf');
 const webpack = require('webpack');
@@ -7,13 +8,10 @@ const notifier = require('node-notifier');
 
 require('dotenv').config();
 
-const createConfig = require(path.resolve(__dirname, 'webpack', 'config.js'));
+const createConfig = require('./webpack/config.js');
 
-const root = process.cwd();
-
-exports.start = () => {
+exports.start = () =>
   require(path.resolve(process.cwd(), '.dist', 'node', 'app'));
-};
 
 exports.build = (options, args = {}) => {
   if (!Array.isArray(options)) {
@@ -23,7 +21,9 @@ exports.build = (options, args = {}) => {
 
   const compiler = webpack(
     options.map((config, i) => {
-      rimraf.sync(path.resolve(root, '.dist', config.runtime.split('/')[0]));
+      if (config.output && fs.existsSync(path.resolve(config.output))) {
+        rimraf.sync(path.resolve(config.output));
+      }
       return createConfig(config);
     })
   );
@@ -31,7 +31,7 @@ exports.build = (options, args = {}) => {
   return new Promise((yay, nay) => {
     compiler.run((err, compilation) => {
       if (err) {
-        console.error(err);
+        // console.error(err);
         if (!args.silent) {
           process.exit(1);
         }
@@ -40,7 +40,7 @@ exports.build = (options, args = {}) => {
       const stats = compilation.stats || [compilation];
       stats.forEach((c, i) => {
         if (!args.silent) {
-          console.log(c.toString());
+          // console.log(c.toString());
         }
         // console.log('File sizes after gzip:\n');
         // printFileSizesAfterBuild(c, null, null);
@@ -50,7 +50,7 @@ exports.build = (options, args = {}) => {
   });
 };
 
-exports.dev = options => {
+exports.dev = (options, p) => {
   process.env.NODE_ENV = process.env.NODE_ENV || 'development';
   if (!Array.isArray(options)) {
     options = [options];
@@ -65,21 +65,16 @@ exports.dev = options => {
 
   options.forEach((config, i) => {
     const currentCompiler = compiler.compilers[i];
-    if (
-      config.runtime === 'node' ||
-      config.runtime === 'lambda' ||
-      config.runtime === 'electron/main'
-    ) {
-      currentCompiler.watch(watch, (err, compilation) => {
+    if (config.target === 'node' || config.target === 'electron-main') {
+      console.log('WATCH');
+      currentCompiler.watch(watch, err => {
         if (err) {
-          return console.log('[webpack] error:', err);
+          return notifier.notify('Failed');
         }
-        const stats = compilation.stats || [compilation];
-        console.log('[webpack] the following asset bundles were built:');
-        stats.forEach(c => console.log(c.toString()));
         notifier.notify('Ready');
       });
     } else {
+      const port = config.port || p;
       const WebpackDevServer = require('webpack-dev-server');
       const proxy = config.proxy || {};
       const server = new WebpackDevServer(currentCompiler, {
@@ -90,7 +85,7 @@ exports.dev = options => {
         watchOptions: watch,
         inline: false,
         host: '0.0.0.0',
-        port: config.port,
+        port,
         disableHostCheck: true,
         historyApiFallback: true,
         hot: true,
@@ -111,8 +106,7 @@ exports.dev = options => {
           publicPath: false
         }
       });
-      console.log('WebpackDevServer listening to', config.port);
-      server.listen(config.port);
+      server.listen(port);
     }
   });
   return compiler;

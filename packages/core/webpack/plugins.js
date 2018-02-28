@@ -3,12 +3,24 @@ const AssetsPlugin = require('assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = (
   config,
-  { isWeb, isNode, isElectron, isDev, port, isProd, analyze, output, env = {} }
+  {
+    isNode,
+    isElectron,
+    isDev,
+    isProd,
+    analyze,
+    output,
+    filename,
+    target,
+    env = {}
+  }
 ) => {
   config.plugins = [
+    new FriendlyErrorsWebpackPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: isDev
     }),
@@ -26,10 +38,8 @@ module.exports = (
         {
           'process.env.BUILD_ON': `"${new Date()}"`,
           'process.env.NODE_ENV': `"${isProd ? 'production' : 'development'}"`,
-          'process.env.IS_WEB': isWeb,
           'process.env.IS_NODE': isNode,
-          'process.env.IS_ELECTRON': isElectron,
-          'process.env.PORT': `${port}`
+          'process.env.IS_ELECTRON': isElectron
         }
       )
     ),
@@ -45,7 +55,7 @@ module.exports = (
     config.plugins.push(new webpack.NamedModulesPlugin());
   }
 
-  if (isNode && !isElectron) {
+  if (isNode) {
     config.plugins.push(
       new webpack.BannerPlugin({
         banner: 'require("source-map-support").install();',
@@ -53,15 +63,15 @@ module.exports = (
         entryOnly: false
       })
     );
-    if (isDev) {
+    if (isDev && target === 'node') {
       config.plugins.push(
         new StartServerPlugin({
-          // name: `${outputFile}.js` || 'main.js'
+          name: `${filename}.js`
           // nodeArgs: [`--inspect=${devPort + 1}`], // allow debugging
         })
       );
     }
-  } else if (!isNode) {
+  } else {
     config.plugins.push(new HtmlWebpackHarddiskPlugin());
   }
 
@@ -85,7 +95,7 @@ module.exports = (
   }
 
   // LimitChunkCount on all but production-web
-  if (isWeb && isProd) {
+  if (target === 'web' && isProd) {
     config.plugins.push(
       new AssetsPlugin({
         filename: 'assets.json',
@@ -97,11 +107,11 @@ module.exports = (
       config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
     }
     // config.plugins.push(new webpack.optimize.LimitChunkCountPlugin({ minChunkSize: 10000 }));
-    const filename = isProd ? output.chunkFileName : output.filename;
+    const file = isProd ? output.chunkFileName : output.filename;
     config.plugins.push(
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'main',
-        filename,
+        name: filename,
+        filename: file,
         minChunks: 2,
         async: true,
         children: true

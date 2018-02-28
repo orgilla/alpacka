@@ -1,7 +1,5 @@
 {
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "private": true,
   "version": "0.9.0",
   "name": "alpacka",
@@ -9,7 +7,6 @@
   "scripts": {
     "test": "jest",
     "codecov": "codecov",
-    "prepublish": "yarn test",
     "up": "yarn upgrade-interactive --latest",
     "init": "lerna init --independent",
     "watch": "alpacka watch",
@@ -23,13 +20,7 @@
     "type": "git",
     "url": "https://github.com/bkniffler/alpacka.git"
   },
-  "keywords": [
-    "react",
-    "universal",
-    "javascript",
-    "express",
-    "webpack"
-  ],
+  "keywords": ["react", "universal", "javascript", "express", "webpack"],
   "author": "Benjamin Kniffler <bkniffler@me.com>",
   "contributors": [
     "Benjamin Kniffler <bkniffler@me.com>",

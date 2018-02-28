@@ -20,11 +20,6 @@ const resolvePlugin = nameOrFunc => {
     exists(`@alpacka/plugin-${nameOrFunc}`)
   ) {
     return require(`@alpacka/plugin-${nameOrFunc}`);
-  } else if (
-    typeof nameOrFunc === 'string' &&
-    exists(`@alpacka/runtime-${nameOrFunc}`)
-  ) {
-    return require(`@alpacka/runtime-${nameOrFunc}`);
   } else if (typeof nameOrFunc === 'string' && exists(nameOrFunc)) {
     return require(nameOrFunc);
   }
@@ -35,29 +30,16 @@ process.noDeprecation = true;
 module.exports = options => {
   const {
     mode = process.env.NODE_ENV,
-    port,
     alias = {},
     plugins = [],
     paths,
-    runtime,
-    outputFile
+    target,
+    filename = 'main'
   } = options;
 
-  let target = options.target;
-  if (!target && runtime === 'lambda') {
-    target = 'node';
-  } else if (!target && runtime === 'server') {
-    target = 'node';
-  } else if (!target && runtime === 'electron/main') {
-    target = 'electron-main';
-  } else if (!target && runtime === 'electron/renderer') {
-    target = 'electron-renderer';
-  } else if (!target) {
-    target = 'web';
-  }
   const isProd = mode === 'production' || mode === 'test';
   const isDev = !isProd;
-  const isElectron = target.indexOf('electron') === 0;
+  const isElectron = target.indexOf('electron-') === 0;
   const isElectronMain = target === 'electron-main';
   const isElectronRenderer = target === 'electron-renderer';
   const isServer = target === 'node' || target === 'lambda';
@@ -65,12 +47,14 @@ module.exports = options => {
   const isNode = isServer || isElectronMain;
   const folder = isDev ? '.dev' : '.dist';
   const output =
-    options.output || path.resolve(appRoot, folder, runtime.split('/')[0]);
+    options.output || path.resolve(appRoot, folder, target.split('-')[0]);
+  const cache = options.cache || path.resolve(output, '..', '.cache');
 
   const isVerbose = true;
-  let config = {
+  const config = {
     bail: !isDev,
     cache: isDev,
+    target,
     // cache: true,
     stats: {
       cached: isVerbose,
@@ -88,8 +72,7 @@ module.exports = options => {
       extensions: ['.js', '.less'],
       modules: [
         path.resolve(appRoot, 'node_modules'),
-        path.resolve(appRoot, '..', '..', 'node_modules'),
-        path.resolve(appRoot, 'src')
+        path.resolve(appRoot, '..', '..', 'node_modules')
       ],
       /* modules: [
         path.resolve(appRoot, 'node_modules'),
@@ -109,8 +92,7 @@ module.exports = options => {
     resolveLoader: {
       modules: [
         path.resolve(appRoot, 'node_modules'),
-        path.resolve(appRoot, '..', '..', 'node_modules'),
-        path.resolve(appRoot, 'src')
+        path.resolve(appRoot, '..', '..', 'node_modules')
       ]
     },
     module: {
@@ -141,7 +123,7 @@ module.exports = options => {
       ]
     },
     output: {
-      publicPath: isProd ? '/' : `http://localhost:${port}/`,
+      publicPath: '/',
       path: output
     },
     entry: {}
@@ -153,8 +135,7 @@ module.exports = options => {
     : 'cheap-module-source-map';
 
   // target && node settings
-  if (isServer) {
-    config.target = 'node';
+  if (isNode) {
     config.watch = isDev;
     config.node = {
       console: false,
@@ -165,20 +146,7 @@ module.exports = options => {
       __dirname: false
     };
     config.output.libraryTarget = 'commonjs2';
-  } else if (isElectronMain) {
-    config.target = 'electron-main';
-    config.watch = isDev;
-    config.node = {
-      console: false,
-      global: false,
-      process: false,
-      Buffer: false,
-      __dirname: false,
-      __filename: false
-    };
-    config.output.libraryTarget = 'commonjs2';
   } else {
-    config.target = isElectron ? 'electron-renderer' : 'web';
     config.node = {
       fs: 'empty',
       net: 'empty',
@@ -198,8 +166,10 @@ module.exports = options => {
   }
 
   const args = Object.assign({}, options, {
+    webpack,
+    chain: (config, funcs) =>
+      funcs.reduce((config, func) => func(config, args), config),
     target,
-    folder,
     isProd,
     isDev,
     isWeb,
@@ -209,17 +179,18 @@ module.exports = options => {
     isNode,
     appRoot,
     paths,
-    port,
-    output
+    cache,
+    output,
+    filename
   });
 
-  config = entry(config, args, webpack);
-  config = externals(config, args, webpack);
-  config = webpackPlugins(config, args, webpack);
-  const x = plugins
+  const newConfig = [entry, externals, webpackPlugins]
+    .concat(plugins)
     .map(resolvePlugin)
-    .concat([resolvePlugin(runtime)])
-    .reduce((store, plugin) => plugin(config, args, webpack) || config, config);
+    .reduce((store, plugin) => plugin(config, args) || config, config);
 
-  return x;
+  const e = newConfig.entry;
+  newConfig.entry = {};
+  newConfig.entry[filename] = e;
+  return newConfig;
 };

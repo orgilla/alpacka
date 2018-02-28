@@ -1,15 +1,9 @@
 module.exports = (config, { isDev, entry, appRoot, target }) => {
   config.resolve.alias.__resourceQuery =
     (entry && entry.split('?')[1]) || appRoot;
-  if (target === 'electron-main') {
+  if (target === 'electron-main' || target === 'node') {
     if (isDev) {
       config.entry = ['webpack/hot/poll?1000', 'babel-polyfill'];
-    } else {
-      config.entry = ['babel-polyfill'];
-    }
-  } else if (target === 'node') {
-    if (isDev) {
-      config.entry = ['babel-polyfill', 'webpack/hot/poll?1000'];
     } else {
       config.entry = ['babel-polyfill'];
     }

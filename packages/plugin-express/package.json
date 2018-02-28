@@ -1,7 +1,7 @@
 {
   "private": false,
   "version": "0.9.12",
-  "name": "@alpacka/runtime-server",
+  "name": "@alpacka/plugin-express",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
   "contributors": [

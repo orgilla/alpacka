@@ -1,28 +1,18 @@
 const { resolve } = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = (config, options) => {
-  const { isProd, isWeb, isNode, isDev, appRoot, folder, target } = options;
+module.exports = args => (config, options) => {
+  const { modifyVars } = args;
+  const { isProd, isDev, target, cache } = options;
   config.resolveLoader.modules.push(resolve(__dirname, 'node_modules'));
 
-  const modifyVars = Object.assign(
-    {},
-    {
-      'menu-collapsed-width': '64px',
-      'font-family-no-number':
-        '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      'font-family':
-        '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-      'font-size-base': '15px',
-      'primary-color': '#8e44ad'
-    },
-    options.modifyVars || {}
-  );
+  const isWeb = target === 'web' || target === 'electron-renderer';
+
   if (isWeb && isProd) {
     config.plugins.push(
       new ExtractTextPlugin({
         allChunks: true,
-        filename: isProd ? '[name].[hash].css' : '[name].css'
+        filename: config.output.filename.replace('.js', '.css')
       })
     );
     config.module.rules.push({
@@ -32,12 +22,7 @@ module.exports = (config, options) => {
           {
             loader: 'cache-loader',
             options: {
-              cacheDirectory: resolve(
-                appRoot,
-                folder,
-                'cache',
-                `${target}-less`
-              )
+              cacheDirectory: resolve(cache, `less`)
             }
           },
           {
@@ -59,7 +44,7 @@ module.exports = (config, options) => {
         {
           loader: 'cache-loader',
           options: {
-            cacheDirectory: resolve(appRoot, folder, 'cache', `${target}-less`)
+            cacheDirectory: resolve(cache, 'less')
           }
         },
         {
@@ -76,7 +61,7 @@ module.exports = (config, options) => {
         }
       ]
     });
-  } else if (isNode) {
+  } else {
     config.module.rules.push({
       test: /\.(less|css)$/,
       loader: 'ignore-loader'

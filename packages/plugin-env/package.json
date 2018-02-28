@@ -1,7 +1,6 @@
 {
-  "private": false,
   "version": "0.9.23",
-  "name": "@alpacka/runtime-web",
+  "name": "@alpacka/plugin-env",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
   "contributors": [
@@ -10,9 +9,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "copy-webpack-plugin": "^4.4.2",
-    "html-webpack-plugin": "^2.30.1",
-    "offline-plugin": "^4.8.5"
+    "dotenv": "^5.0.0"
   },
   "devDependencies": {
     "webpack": "^3.11.0"

@@ -4,7 +4,11 @@ const WebpackShellPlugin = require('./webpack-shell-plugin');
 
 const path = require('path');
 
-module.exports = (config, { isProd, appRoot, output }) => {
+module.exports = (src = process.cwd()) => (
+  config,
+  { isProd, appRoot, output }
+) => {
+  config.resolve.alias.__resourceQuery = src;
   config.entry.push(path.resolve(__dirname, 'entry.js'));
 
   config.module.rules.push({
@@ -22,7 +26,7 @@ module.exports = (config, { isProd, appRoot, output }) => {
     config.plugins.push(
       new CopyWebpackPlugin([
         {
-          from: path.resolve(appRoot, 'serverless.yml'),
+          from: path.resolve(src, 'serverless.yml'),
           to: output
         }
       ])

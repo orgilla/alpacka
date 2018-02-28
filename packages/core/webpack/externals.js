@@ -17,6 +17,10 @@ module.exports = (config, { appRoot, externals = [], isNode }) => {
           /\.(css|scss|sass|sss|less)$/,
           v => v.indexOf('webpack/hot/poll') === 0,
           v => v === 'antd' || v.indexOf('antd/') === 0,
+          v => v.indexOf('@powr/') === 0,
+          v => v.indexOf('@filou/') === 0,
+          v => v.indexOf('@grappa/') === 0,
+          v => v.indexOf('@alpacka/') === 0,
           v =>
             v === 'olymp' ||
             v.indexOf('olymp-') === 0 ||

@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 function getFileExtension(filename) {
   let extension = filename.split('.').reverse()[0];
@@ -96,9 +97,15 @@ class TemplatePlugin {
             return Buffer.byteLength(resultString);
           }
         };
+        callback();
+        /* const fullPath = path.resolve(
+          this.outputPath || compilation.compiler.outputPath,
+          this.options.filename
+        );
+        fs.writeFile(fullPath, resultString, err => callback(err, null)); */
+      } else {
+        callback();
       }
-
-      callback();
     });
   }
 }
