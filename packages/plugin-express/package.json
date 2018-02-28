@@ -1,5 +1,4 @@
 {
-  "private": false,
   "version": "0.10.1",
   "name": "@alpacka/plugin-express",
   "description": "",

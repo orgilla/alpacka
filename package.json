@@ -11,7 +11,7 @@
     "init": "lerna init --independent",
     "watch": "alpacka watch",
     "lb": "lerna bootstrap",
-    "lp": "yarn run prepublish && lerna publish --access public",
+    "lp": "lerna publish --access public",
     "lpf": "lerna publish --force-publish --access public",
     "lc": "lerna exec --concurrency 1 -- del 'package-lock.json' 'node_modules'"
   },
