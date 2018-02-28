@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "0.9.23",
+  "version": "0.10.0",
   "name": "@alpacka/plugin-electron",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
