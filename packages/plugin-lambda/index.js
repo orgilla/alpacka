@@ -4,13 +4,10 @@ const WebpackShellPlugin = require('./webpack-shell-plugin');
 
 const path = require('path');
 
-module.exports = (src = process.cwd()) => (
+module.exports = ({ src = process.cwd(), yml }) => (
   config,
   { isProd, appRoot, output }
 ) => {
-  config.resolve.alias.__resourceQuery = src;
-  config.entry.push(path.resolve(__dirname, 'entry.js'));
-
   config.module.rules.push({
     test: /\.(yaml|yml)$/,
     use: [
@@ -23,10 +20,11 @@ module.exports = (src = process.cwd()) => (
     ]
   });
   if (isProd) {
+    config.entry.push(src);
     config.plugins.push(
       new CopyWebpackPlugin([
         {
-          from: path.resolve(src, 'serverless.yml'),
+          from: yml,
           to: output
         }
       ])
@@ -43,6 +41,10 @@ module.exports = (src = process.cwd()) => (
         safe: true
       })
     );
+  } else {
+    config.entry.push(path.resolve(__dirname, 'entry.js'));
+    config.resolve.alias.__yml = yml;
+    config.resolve.alias.__src = src;
   }
   return config;
 };
