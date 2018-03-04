@@ -1,12 +1,12 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const DepsPlugin = require('./webpack-deps-plugin');
 const WebpackShellPlugin = require('./webpack-shell-plugin');
+const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 
 const path = require('path');
 
 module.exports = ({ src = process.cwd(), yml }) => (
   config,
-  { isProd, appRoot, output }
+  { isProd, appRoot, output, filename }
 ) => {
   config.module.rules.push({
     test: /\.(yaml|yml)$/,
@@ -30,10 +30,10 @@ module.exports = ({ src = process.cwd(), yml }) => (
       ])
     );
     config.plugins.push(
-      new DepsPlugin({
-        root: appRoot,
-        outDir: output
-      })
+      new GenerateJsonPlugin(
+        'package.json',
+        require('./package-json')(appRoot, filename)
+      )
     );
     config.plugins.push(
       new WebpackShellPlugin({
