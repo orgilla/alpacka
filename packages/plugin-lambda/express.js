@@ -40,7 +40,7 @@ const invoke = (func, isMiddleware) => (req, res, next) => {
 const index = {};
 Object.keys(serverless.functions).forEach(key => {
   const funcDef = serverless.functions[key];
-  index[key] = main[funcDef.handler];
+  index[key] = main[funcDef.handler.split('.').reverse()[0]];
   if (funcDef.events && funcDef.events.length && funcDef.events[0].http) {
     const { http } = funcDef.events[0];
     if (http.authorizer && index[http.authorizer]) {

@@ -1,0 +1,16 @@
+{
+  "version": "0.10.4",
+  "name": "@alpacka/plugin-graphql",
+  "description": "",
+  "author": "Benjamin Kniffler <bkniffler@me.com>",
+  "contributors": [
+    "Benjamin Kniffler <bkniffler@me.com>",
+    "Philipp Achenbach <alpacka@philipp-achenbach.de>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "graphql": "^0.13.1",
+    "webpack-graphql-loader": "^0.1.0"
+  },
+  "devDependencies": {}
+}
