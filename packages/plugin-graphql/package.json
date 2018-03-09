@@ -1,5 +1,5 @@
 {
-  "version": "0.10.4",
+  "version": "0.10.7",
   "name": "@alpacka/plugin-graphql",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
@@ -11,6 +11,5 @@
   "dependencies": {
     "graphql": "^0.13.1",
     "webpack-graphql-loader": "^0.1.0"
-  },
-  "devDependencies": {}
+  }
 }

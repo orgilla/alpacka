@@ -1,5 +1,5 @@
 {
-  "version": "0.10.4",
+  "version": "0.10.7",
   "name": "@alpacka/plugin-prisma",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
@@ -7,7 +7,5 @@
     "Benjamin Kniffler <bkniffler@me.com>",
     "Philipp Achenbach <alpacka@philipp-achenbach.de>"
   ],
-  "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "license": "MIT"
 }
