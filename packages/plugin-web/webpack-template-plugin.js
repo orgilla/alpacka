@@ -51,6 +51,9 @@ class TemplatePlugin {
     if (typeof this.options.template === 'string') {
       this.options.template = resolvePlugin(this.options.template);
     }
+    if (!this.options.publicPath) {
+      this.options.publicPath = '/';
+    }
   }
   apply(compiler) {
     compiler.plugin('emit', (compilation, callback) => {
@@ -68,18 +71,18 @@ class TemplatePlugin {
               if (!initial[ext]) {
                 initial[ext] = [];
               }
-              initial[ext].push(`/${file}`);
+              initial[ext].push(`${this.options.publicPath}${file}`);
             }
             if (element.entry) {
               if (!entry[ext]) {
                 entry[ext] = [];
               }
-              entry[ext].push(`/${file}`);
+              entry[ext].push(`${this.options.publicPath}${file}`);
             }
             if (!files[ext]) {
               files[ext] = [];
             }
-            files[ext].push(`/${file}`);
+            files[ext].push(`${this.options.publicPath}${file}`);
           });
         });
 

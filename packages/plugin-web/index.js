@@ -4,8 +4,8 @@ const TemplatePlugin = require('./webpack-template-plugin');
 const path = require('path');
 
 module.exports = (args = {}) => (config, props) => {
-  const { template, offline, history } = args;
-  const { isProd, target, output, webpack, filename } = props;
+  const { template, offline } = args;
+  const { isProd, target, output } = props;
   let statics = args.statics || [];
   //  config.entry.push('olymp/dom');
   if (!Array.isArray(statics)) {
@@ -16,12 +16,6 @@ module.exports = (args = {}) => (config, props) => {
       'Please provide a template (.js file that exports a html template)'
     );
   }
-
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env.HISTORY': `"${history}"`
-    })
-  );
 
   if (isProd && (offline === true || target === 'web')) {
     const last = config.entry[config.entry.length - 1];
@@ -36,20 +30,26 @@ module.exports = (args = {}) => (config, props) => {
     );
     config.plugins.push(
       new OfflinePlugin({
+        relativePaths: false,
+        publicPath: '/',
         responseStrategy: 'network-first',
         // externals: ['https://cdn.polyfill.io/v2/polyfill.min.js?callback=POLY'],
         autoUpdate: 1000 * 60 * 1,
         caches: {
-          main: [`${filename}.*.js`, 'offline.html'],
+          main: ['*.js', '*.css'],
           additional: [':externals:'],
-          optional: ['*.js']
+          optional: [':rest:']
         },
+        externals: ['/', '/offline.html'],
         updateStrategy: 'all',
         ServiceWorker: {
           events: true,
-          navigateFallbackURL: '/offline.html'
+          navigateFallbackURL: '/'
         },
-        AppCache: false
+        AppCache: {
+          events: true,
+          FALLBACK: { '/': '/offline.html' }
+        }
       })
     );
   }
@@ -68,6 +68,7 @@ module.exports = (args = {}) => (config, props) => {
   config.plugins.push(
     new TemplatePlugin({
       filename: 'index.html',
+      publicPath: config.output.publicPath,
       template
     })
   );

@@ -123,7 +123,7 @@ module.exports = options => {
       ]
     },
     output: {
-      publicPath: '/',
+      publicPath: isElectronRenderer ? './' : '/',
       path: output
     },
     entry: {}
