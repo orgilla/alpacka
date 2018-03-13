@@ -66,7 +66,6 @@ exports.dev = (options, p) => {
   options.forEach((config, i) => {
     const currentCompiler = compiler.compilers[i];
     if (config.target === 'node' || config.target === 'electron-main') {
-      console.log('WATCH');
       currentCompiler.watch(watch, err => {
         if (err) {
           return notifier.notify('Failed');
