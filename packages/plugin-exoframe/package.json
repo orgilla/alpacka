@@ -1,0 +1,14 @@
+{
+  "version": "0.10.8",
+  "name": "@alpacka/plugin-exoframe",
+  "description": "",
+  "author": "Benjamin Kniffler <bkniffler@me.com>",
+  "contributors": [
+    "Benjamin Kniffler <bkniffler@me.com>",
+    "Philipp Achenbach <alpacka@philipp-achenbach.de>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "generate-json-webpack-plugin": "^0.2.2"
+  }
+}

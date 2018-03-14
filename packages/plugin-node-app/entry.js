@@ -1,4 +1,4 @@
-const app = require('__prisma_entry').default;
+const app = require('__app_entry').default;
 
 const port = parseInt(process.env.PORT || 3000, 10);
 let server = null;
@@ -9,13 +9,13 @@ app.start({ port }).then(s => {
 });
 
 if (module.hot) {
-  module.hot.accept('__prisma_entry', () => {
+  module.hot.accept('__app_entry', () => {
     if (!server) {
       return null;
     }
     server.close();
     server = null;
-    require('__prisma_entry')
+    require('__app_entry')
       .default.start({ port })
       .then(s => {
         server = s;
