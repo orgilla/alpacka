@@ -49,12 +49,6 @@ module.exports = ({ include } = {}) => (config, options) => {
     babelOptions.plugins.push('react-hot-loader/babel');
   }
 
-  include = include || [
-    // path.resolve(appRoot, 'server'),
-    // path.resolve(olympRoot, 'graphql'),
-    resolve(appRoot, 'src')
-  ];
-
   if (isDev) {
     config.module.rules.push({
       test: /\.js$/,
@@ -70,6 +64,7 @@ module.exports = ({ include } = {}) => (config, options) => {
           options: babelOptions
         }
       ],
+      exclude: /node_modules/,
       include
     });
   } else {
@@ -87,6 +82,7 @@ module.exports = ({ include } = {}) => (config, options) => {
           options: babelOptions
         }
       ],
+      exclude: /node_modules/,
       include
     });
   }
