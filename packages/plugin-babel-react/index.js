@@ -78,7 +78,7 @@ module.exports = () => (config, options) => {
         {
           loader: 'babel-loader',
           options: {
-            presets: [[require('./config'), { transform }]],
+            presets: [[babel, { transform }]],
             plugins
           }
         }
