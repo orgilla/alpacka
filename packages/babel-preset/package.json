@@ -1,6 +1,6 @@
 {
   "name": "@alpacka/babel-preset",
-  "version": "0.11.3",
+  "version": "0.12.0",
   "description": "Babel preset used by Create React App",
   "license": "MIT",
   "bugs": {
