@@ -52,6 +52,7 @@ module.exports = options => {
 
   const isVerbose = true;
   const config = {
+    mode,
     bail: !isDev,
     cache: isDev,
     target,
@@ -69,6 +70,7 @@ module.exports = options => {
       version: isVerbose
     },
     resolve: {
+      // Temporary set mainFields: https://github.com/graphql/graphql-js/issues/1272
       mainFields: ['browser', 'main', 'module'],
       extensions: ['.js', '.less'],
       modules: [
