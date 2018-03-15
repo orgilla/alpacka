@@ -1,6 +1,6 @@
 const { resolve } = require('path');
-const babel = require('./config');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const babel = require('@alpacka/babel-preset');
 
 module.exports = () => (config, options) => {
   const { isProd, isDev, target, transform, cache } = options;
@@ -38,15 +38,11 @@ module.exports = () => (config, options) => {
       })
     );
   }
-  const babelOptions = babel({ isDev, transform });
 
-  if (isProd) {
-    // babelOptions.plugins.push('graphql-tag');
-  }
-
+  const plugins = [];
   if (isDev && (target === 'electron-renderer' || target === 'web')) {
-    babelOptions.plugins.push('extract-hoc/babel');
-    babelOptions.plugins.push('react-hot-loader/babel');
+    plugins.push('extract-hoc/babel');
+    plugins.push('react-hot-loader/babel');
   }
 
   if (isDev) {
@@ -61,7 +57,10 @@ module.exports = () => (config, options) => {
         },
         {
           loader: 'babel-loader',
-          options: babelOptions
+          options: {
+            presets: [[babel, { transform }]],
+            plugins
+          }
         }
       ],
       exclude: /node_modules/
@@ -78,7 +77,10 @@ module.exports = () => (config, options) => {
         },
         {
           loader: 'babel-loader',
-          options: babelOptions
+          options: {
+            presets: [[require('./config'), { transform }]],
+            plugins
+          }
         }
       ],
       exclude: /node_modules/
