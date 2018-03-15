@@ -104,8 +104,13 @@ module.exports = (
     config.optimization = {
       runtimeChunk: false,
       splitChunks: {
-        name: 'vendor',
-        minChunks: 2
+        cacheGroups: {
+          [file]: {
+            name: filename,
+            chunks: "initial",
+            minChunks: 2
+          }
+        }
       },
       splitChunks: {
         cacheGroups: {

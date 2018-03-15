@@ -1,5 +1,5 @@
 const { resolve } = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+//  const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const babel = require('@alpacka/babel-preset');
 
 module.exports = () => (config, options) => {
@@ -7,7 +7,7 @@ module.exports = () => (config, options) => {
   config.resolveLoader.modules.push(resolve(__dirname, 'node_modules'));
   if (isProd && target === 'web') {
     // config.plugins.push(new LodashModuleReplacementPlugin()),
-    config.optimization.minimizer = [
+    /* config.optimization.minimizer = [
       new UglifyJSPlugin({
         uglifyOptions: {
           ecma: 8,
@@ -36,7 +36,7 @@ module.exports = () => (config, options) => {
         cache: true,
         sourceMap: true
       })
-    ];
+    ]; */
   }
 
   const plugins = [];

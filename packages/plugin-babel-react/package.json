@@ -15,7 +15,6 @@
     "babel-loader": "^8.0.0-beta.2",
     "cache-loader": "^1.2.2",
     "extract-hoc": "0.0.5",
-    "react-hot-loader": "4.0.0",
-    "uglifyjs-webpack-plugin": "^1.2.3"
+    "react-hot-loader": "4.0.0"
   }
 }
