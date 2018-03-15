@@ -62,9 +62,11 @@ module.exports = function(api, opts) {
           // static code analysis to determine what's required.
           // This is probably a fine default to help trim down bundles when
           // end-users inevitably import '@babel/polyfill'.
-          useBuiltIns: 'entry',
+          //  useBuiltIns: 'entry',
+          useBuiltIns: opts.isLibrary ? false : 'entry',
           // Do not transform modules to CJS
-          modules: false
+          modules: opts.isLibrary ? 'commonjs' : false
+          // modules: false
         }
       ],
       [
@@ -108,9 +110,9 @@ module.exports = function(api, opts) {
       [
         require('@babel/plugin-transform-runtime').default,
         {
-          helpers: false,
+          /* helpers: false,
           polyfill: false,
-          regenerator: true
+          regenerator: true */
         }
       ],
       isEnvProduction && [
@@ -130,13 +132,14 @@ module.exports = function(api, opts) {
       ],
       // Adds syntax support for import()
       require('@babel/plugin-syntax-dynamic-import').default,
-      isEnvTest &&
+      opts.isLibrary &&
+        isEnvTest &&
         // Transform dynamic import to require
         require('babel-plugin-transform-dynamic-import').default,
       // More!
       require.resolve('babel-plugin-lodash'),
       [
-        require.resolve('babel-plugin-import'),
+        require.resolve('babel-plugin-import-7'),
         { libraryName: 'antd', style: true }
       ],
       [
