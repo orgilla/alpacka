@@ -34,24 +34,12 @@ const resolvePackages = (packages, r) => {
   }
   return result;
 };
-const resolvePlugin = name => {
-  if (exists(`@alpacka/plugin-${name}/config`)) {
-    return require(`@alpacka/plugin-${name}/config`); // eslint-disable-line
-  } else if (exists(name)) {
-    return require(name); // eslint-disable-line
-  }
-  throw new Error(
-    `${name} not found (tried to resolve '@alpacka/plugin-${name}/config' and '${name}')`
-  );
-};
 
 module.exports = argv => {
   const root = argv.root || process.cwd();
   const packages = resolvePackages(argv.packages, root);
-  const plugin = resolvePlugin(argv.config || 'babel-react');
   return {
     force: argv.force || false,
-    plugin,
     packages,
     root,
     extensions: argv.extensions || defaultExtensions
