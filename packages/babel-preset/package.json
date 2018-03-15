@@ -1,16 +1,19 @@
 {
   "name": "@alpacka/babel-preset",
-  "version": "0.11.1",
+  "version": "0.11.3",
   "description": "Babel preset used by Create React App",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/facebook/create-react-app/issues"
   },
-  "files": ["index.js", "dependencies.js"],
+  "files": [
+    "index.js",
+    "dependencies.js"
+  ],
   "dependencies": {
     "@babel/core": "7.0.0-beta.41",
-    "@babel/plugin-proposal-decorators": "^7.0.0-beta.41",
     "@babel/plugin-proposal-class-properties": "7.0.0-beta.41",
+    "@babel/plugin-proposal-decorators": "^7.0.0-beta.41",
     "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.41",
     "@babel/plugin-transform-classes": "7.0.0-beta.41",
     "@babel/plugin-transform-destructuring": "7.0.0-beta.41",
@@ -24,9 +27,9 @@
     "@babel/preset-react": "7.0.0-beta.41",
     "babel-plugin-import": "1.6.7",
     "babel-plugin-lodash": "3.3.2",
-    "babel-plugin-transform-imports": "^1.5.0",
     "babel-plugin-macros": "2.0.0",
     "babel-plugin-transform-dynamic-import": "2.0.0",
+    "babel-plugin-transform-imports": "^1.5.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.12"
   }
 }
