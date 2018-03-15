@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "0.10.11",
+  "version": "0.10.12",
   "name": "@alpacka/plugin-babel",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
