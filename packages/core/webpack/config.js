@@ -69,6 +69,7 @@ module.exports = options => {
       version: isVerbose
     },
     resolve: {
+      mainFields: ['browser', 'main', 'module'],
       extensions: ['.js', '.less'],
       modules: [
         path.resolve(appRoot, 'node_modules'),

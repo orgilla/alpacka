@@ -9,9 +9,6 @@
     "Philipp Achenbach <alpacka@philipp-achenbach.de>"
   ],
   "license": "MIT",
-  "devDependencies": {
-    "webpack": "^3.11.0"
-  },
   "dependencies": {
     "copy-webpack-plugin": "^4.5.1",
     "express": "^4.16.3",

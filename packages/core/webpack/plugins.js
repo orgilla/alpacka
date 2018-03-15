@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const StartServerPlugin = require('start-server-webpack-plugin');
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 module.exports = (
@@ -71,8 +70,6 @@ module.exports = (
         })
       );
     }
-  } else {
-    config.plugins.push(new HtmlWebpackHarddiskPlugin());
   }
 
   // Hot module replacement on dev

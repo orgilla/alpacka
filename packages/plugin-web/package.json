@@ -11,10 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "copy-webpack-plugin": "^4.5.1",
-    "html-webpack-plugin": "^3.0.6",
     "offline-plugin": "^4.8.5"
-  },
-  "devDependencies": {
-    "webpack": "^3.11.0"
   }
 }

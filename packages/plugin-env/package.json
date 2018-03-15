@@ -10,8 +10,5 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^5.0.1"
-  },
-  "devDependencies": {
-    "webpack": "^3.11.0"
   }
 }
