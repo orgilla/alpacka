@@ -22,7 +22,7 @@
     "raw-loader": "^0.5.1",
     "source-map-support": "^0.5.4",
     "start-server-webpack-plugin": "^2.2.5",
-    "webpack": "4.1.0",
+    "webpack": "4.1.1",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-dev-server": "^3.1.1",
     "webpack-node-externals": "^1.6.0",

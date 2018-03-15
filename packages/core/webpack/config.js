@@ -57,6 +57,7 @@ module.exports = options => {
     cache: isDev,
     target,
     optimization: {
+      runtimeChunk: false,
       minimize: false,
       namedModules: isDev,
       noEmitOnErrors: true,
@@ -74,6 +75,7 @@ module.exports = options => {
       timings: true,
       version: isVerbose
     },
+    plugins: [],
     resolve: {
       // Temporary set mainFields: https://github.com/graphql/graphql-js/issues/1272
       mainFields: ['browser', 'main', 'module'],
@@ -166,11 +168,99 @@ module.exports = options => {
 
   // inline-source-map for web-dev
   if (isProd && target === 'web') {
-    config.output.filename = '[name].[chunkhash].js';
+    config.output.filename = `${filename}.[chunkhash].js`;
+    config.output.chunkFilename = `${filename}.[chunkhash].js`;
+    config.plugins.push(
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
+    );
+    /* config.output.filename = '[name].[chunkhash].js';
     config.output.chunkFilename = '[name].[chunkhash].js';
+    config.optimization.splitChunks = {
+      chunks: 'async',
+      minSize: 1,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      //  name: true,
+      cacheGroups: {
+        [filename]: {
+          name: filename,
+          chunks: 'all',
+          // minSize: 1,
+          minChunks: 2,
+          enforce: true
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          priority: -10
+        }
+      }
+    }; */
+    /* const file = isProd ? config.output.chunkFilename : config.output.filename;
+    console.log(isProd, target, config.output.chunkFilename, {
+      [file]: {
+        name: filename,
+        chunks: 'initial',
+        minChunks: 2
+      }
+    });
+    config.optimization = {
+      runtimeChunk: false,
+      splitChunks: {
+        cacheGroups: {
+          [file]: {
+            name: filename,
+            chunks: 'initial',
+            minChunks: 2
+          }
+        }
+      }
+    }; */
+    /* config.plugins.push(
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
+    ); */
+    /*
+    config.optimization = {
+      runtimeChunk: false,
+      splitChunks: {
+        cacheGroups: {
+          [file]: {
+            name: filename,
+            chunks: "initial",
+            minChunks: 2
+          }
+        }
+      },
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
+    };
+    */
+    /*
+    const file = isProd ? output.chunkFileName : output.filename;
+    config.plugins.push(
+      new webpack.optimize.CommonsChunkPlugin({
+        name: filename,
+        filename: file,
+        minChunks: 2,
+        async: true,
+        children: true
+      })
+    );
+    */
   } else {
-    config.output.filename = '[name].js';
-    config.output.chunkFilename = '[name].js';
+    config.output.filename = `${filename}.js`;
+    config.output.chunkFilename = `${filename}.js`;
+    config.plugins.push(
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
+    );
   }
 
   const args = Object.assign({}, options, {

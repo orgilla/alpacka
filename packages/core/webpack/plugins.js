@@ -18,7 +18,7 @@ module.exports = (
     env = {}
   }
 ) => {
-  config.plugins = [
+  config.plugins = config.plugins.concat([
     new FriendlyErrorsWebpackPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: isDev
@@ -47,7 +47,7 @@ module.exports = (
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /de/),
     new ProgressBarPlugin()
     // new CheckerPlugin(),
-  ];
+  ]);
 
   if (isDev) {
     config.plugins.push(new webpack.NamedModulesPlugin());
@@ -98,47 +98,6 @@ module.exports = (
       })
     );
     config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
-    // config.plugins.push(new webpack.optimize.LimitChunkCountPlugin({ minChunkSize: 10000 }));
-
-    /* 
-    config.optimization = {
-      runtimeChunk: false,
-      splitChunks: {
-        cacheGroups: {
-          [file]: {
-            name: filename,
-            chunks: "initial",
-            minChunks: 2
-          }
-        }
-      },
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
-      },
-    }; 
-    */
-    /* 
-    const file = isProd ? output.chunkFileName : output.filename;
-    config.plugins.push(
-      new webpack.optimize.CommonsChunkPlugin({
-        name: filename,
-        filename: file,
-        minChunks: 2,
-        async: true,
-        children: true
-      })
-    ); 
-    */
-  } else {
-    config.plugins.push(
-      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
-    );
   }
 
   return config;
