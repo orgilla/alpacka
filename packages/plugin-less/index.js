@@ -31,7 +31,7 @@ module.exports = args => (config, options) => {
           },
           {
             loader: 'less-loader',
-            options: { modifyVars }
+            options: { modifyVars, javascriptEnabled: true }
           }
         ],
         fallback: 'style-loader'
