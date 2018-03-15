@@ -57,6 +57,11 @@ module.exports = options => {
     cache: isDev,
     target,
     // cache: true,
+    optimization: {
+      namedModules: isDev,
+      noEmitOnErrors: true,
+      concatenateModules: isProd
+    },
     stats: {
       cached: isVerbose,
       cachedAssets: isVerbose,

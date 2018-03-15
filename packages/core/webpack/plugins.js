@@ -45,8 +45,7 @@ module.exports = (
     // new PrepackWebpackPlugin({ }),
     // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /de/),
-    new ProgressBarPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new ProgressBarPlugin()
     // new CheckerPlugin(),
   ];
 
@@ -80,8 +79,7 @@ module.exports = (
   }
 
   if (analyze === true) {
-    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-      .BundleAnalyzerPlugin;
+    const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
     config.plugins.push(
       new BundleAnalyzerPlugin({
         reportFilename: './_report.html',
@@ -100,10 +98,27 @@ module.exports = (
       })
     );
     config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
-    if (isProd) {
-      config.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
-    }
     // config.plugins.push(new webpack.optimize.LimitChunkCountPlugin({ minChunkSize: 10000 }));
+
+    /* 
+    config.optimization = {
+      runtimeChunk: false,
+      splitChunks: {
+        name: 'vendor',
+        minChunks: 2
+      },
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
+    }; 
+    */
+    /* 
     const file = isProd ? output.chunkFileName : output.filename;
     config.plugins.push(
       new webpack.optimize.CommonsChunkPlugin({
@@ -113,7 +128,8 @@ module.exports = (
         async: true,
         children: true
       })
-    );
+    ); 
+    */
   } else {
     config.plugins.push(
       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
