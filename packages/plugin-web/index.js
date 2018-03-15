@@ -43,6 +43,8 @@ module.exports = (args = {}) => (config, props) => {
         externals: ['/', '/offline.html'],
         updateStrategy: 'all',
         ServiceWorker: {
+          // (node:18281) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optim
+          minify: false,
           events: true,
           navigateFallbackURL: '/'
         },

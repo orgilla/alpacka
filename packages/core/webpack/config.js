@@ -56,8 +56,8 @@ module.exports = options => {
     bail: !isDev,
     cache: isDev,
     target,
-    // cache: true,
     optimization: {
+      minimize: false,
       namedModules: isDev,
       noEmitOnErrors: true,
       concatenateModules: isProd
@@ -200,5 +200,6 @@ module.exports = options => {
   const e = newConfig.entry;
   newConfig.entry = {};
   newConfig.entry[filename] = e;
+
   return newConfig;
 };

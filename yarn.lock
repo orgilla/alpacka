@@ -822,7 +822,7 @@ ajv@^4.9.1:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
-ajv@^5.0.0, ajv@^5.1.0, ajv@^5.2.3, ajv@^5.3.0:
+ajv@^5.1.0, ajv@^5.2.3, ajv@^5.3.0:
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
   dependencies:
@@ -3806,15 +3806,6 @@ extglob@^2.0.4:
 extract-hoc@0.0.5:
   version "0.0.5"
   resolved "https://registry.npmjs.org/extract-hoc/-/extract-hoc-0.0.5.tgz#c068e490d492ce61bf0f6b12186bad715987139c"
-
-extract-text-webpack-plugin@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.npmjs.org/extract-text-webpack-plugin/-/extract-text-webpack-plugin-3.0.2.tgz#5f043eaa02f9750a9258b78c0a6e0dc1408fb2f7"
-  dependencies:
-    async "^2.4.1"
-    loader-utils "^1.1.0"
-    schema-utils "^0.3.0"
-    webpack-sources "^1.0.1"
 
 extract-text-webpack-plugin@^4.0.0-beta.0:
   version "4.0.0-beta.0"
@@ -8541,12 +8532,6 @@ sax@>=0.6.0, sax@^1.2.4, sax@~1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-schema-utils@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
-  dependencies:
-    ajv "^5.0.0"
-
 schema-utils@^0.4.2, schema-utils@^0.4.5:
   version "0.4.5"
   resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-0.4.5.tgz#21836f0608aac17b78f9e3e24daff14a5ca13a3e"
@@ -9991,9 +9976,9 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.npmjs.org/webpack/-/webpack-4.1.1.tgz#44e4d6a869dd36fdfc0b227f9bd865a4bccfd81c"
+webpack@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/webpack/-/webpack-4.1.0.tgz#91b6862e56eb3b18b79bb10b51866987ff10d2d6"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^3.0.0"
