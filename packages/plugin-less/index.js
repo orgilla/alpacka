@@ -1,5 +1,4 @@
 const { resolve } = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = args => (config, options) => {
   const { modifyVars } = args;
@@ -9,33 +8,32 @@ module.exports = args => (config, options) => {
   const isWeb = target === 'web' || target === 'electron-renderer';
 
   if (isWeb && isProd) {
+    const MiniCssExtractPlugin = require('mini-css-extract-plugin');
     config.plugins.push(
-      new ExtractTextPlugin({
-        allChunks: true,
-        filename: config.output.filename.replace('.js', '.css')
+      new MiniCssExtractPlugin({
+        filename: config.output.filename.replace('.js', '.css'),
+        chunkFilename: config.output.chunkFilename.replace('.js', '.css')
       })
     );
     config.module.rules.push({
       test: /\.(less|css)$/,
-      loader: ExtractTextPlugin.extract({
-        use: [
-          {
-            loader: 'cache-loader',
-            options: {
-              cacheDirectory: resolve(cache, `less`)
-            }
-          },
-          {
-            loader: 'css-loader',
-            options: { modules: false }
-          },
-          {
-            loader: 'less-loader',
-            options: { modifyVars, javascriptEnabled: true }
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'cache-loader',
+          options: {
+            cacheDirectory: resolve(cache, `less`)
           }
-        ],
-        fallback: 'style-loader'
-      })
+        },
+        {
+          loader: 'css-loader',
+          options: { modules: false }
+        },
+        {
+          loader: 'less-loader',
+          options: { modifyVars, javascriptEnabled: true }
+        }
+      ]
     });
   } else if (isWeb) {
     config.module.rules.push({
