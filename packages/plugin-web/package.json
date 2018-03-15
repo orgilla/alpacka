@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "0.12.0",
+  "version": "0.12.9",
   "name": "@alpacka/plugin-web",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
