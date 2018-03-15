@@ -57,7 +57,7 @@ module.exports = args => (config, options) => {
         },
         {
           loader: 'less-loader',
-          options: { modifyVars, sourceMap: true }
+          options: { modifyVars, sourceMap: true, javascriptEnabled: true }
         }
       ]
     });

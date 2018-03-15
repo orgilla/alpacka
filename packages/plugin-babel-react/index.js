@@ -2,8 +2,8 @@ const { resolve } = require('path');
 const babel = require('./config');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-module.exports = ({ include } = {}) => (config, options) => {
-  const { isProd, isDev, appRoot, target, transform, cache } = options;
+module.exports = () => (config, options) => {
+  const { isProd, isDev, target, transform, cache } = options;
   config.resolveLoader.modules.push(resolve(__dirname, 'node_modules'));
   if (isProd && target === 'web') {
     // config.plugins.push(new LodashModuleReplacementPlugin()),
@@ -64,8 +64,7 @@ module.exports = ({ include } = {}) => (config, options) => {
           options: babelOptions
         }
       ],
-      exclude: /node_modules/,
-      include
+      exclude: /node_modules/
     });
   } else {
     config.module.rules.push({
@@ -82,8 +81,7 @@ module.exports = ({ include } = {}) => (config, options) => {
           options: babelOptions
         }
       ],
-      exclude: /node_modules/,
-      include
+      exclude: /node_modules/
     });
   }
 
