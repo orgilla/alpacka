@@ -11,14 +11,14 @@ process.env.NODE_ENV = 'production';
 
 const dest = '.';
 
-const init = ({ plugin, packages, root, extensions, force }) => {
+const init = ({ packages, root, extensions, force }) => {
   const compile = x =>
     x
       .pipe(plumber())
       .pipe(debug())
       .pipe(newer(dest, { extension: force ? '.xyz' : '.js' }))
       .pipe(sourcemaps.init())
-      .pipe(babel({ preset:  }))
+      .pipe(babel({ presets: [babelOptions] }))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(dest));
   const src = [];
