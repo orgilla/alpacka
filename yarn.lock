@@ -278,6 +278,13 @@
     "@babel/helper-plugin-utils" "7.0.0-beta.41"
     "@babel/plugin-syntax-decorators" "7.0.0-beta.41"
 
+"@babel/plugin-proposal-do-expressions@^7.0.0-beta.42":
+  version "7.0.0-beta.42"
+  resolved "https://registry.npmjs.org/@babel/plugin-proposal-do-expressions/-/plugin-proposal-do-expressions-7.0.0-beta.42.tgz#cb89db5cfd1c54944a1a1315c0bee92457790303"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.42"
+    "@babel/plugin-syntax-do-expressions" "7.0.0-beta.42"
+
 "@babel/plugin-proposal-function-bind@^7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-function-bind/-/plugin-proposal-function-bind-7.0.0-beta.42.tgz#c99d6753cc8e668bfa119476c4f3d0f25f2a1e2f"
@@ -298,6 +305,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.41"
     "@babel/plugin-syntax-optional-catch-binding" "7.0.0-beta.41"
+
+"@babel/plugin-proposal-optional-chaining@^7.0.0-beta.42":
+  version "7.0.0-beta.42"
+  resolved "https://registry.npmjs.org/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.0.0-beta.42.tgz#e66bc6b17c14a79c3098ab68fae26418495b8c34"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.42"
+    "@babel/plugin-syntax-optional-chaining" "7.0.0-beta.42"
 
 "@babel/plugin-proposal-unicode-property-regex@7.0.0-beta.41":
   version "7.0.0-beta.41"
@@ -324,6 +338,12 @@
   resolved "https://registry.npmjs.org/@babel/plugin-syntax-decorators/-/plugin-syntax-decorators-7.0.0-beta.41.tgz#e9a81d320589b8a7d0fe2520ba57a93468eee25e"
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.41"
+
+"@babel/plugin-syntax-do-expressions@7.0.0-beta.42":
+  version "7.0.0-beta.42"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-do-expressions/-/plugin-syntax-do-expressions-7.0.0-beta.42.tgz#68b837adc9f611bcb0c9bb4fac20fcca08fa57b5"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.42"
 
 "@babel/plugin-syntax-dynamic-import@7.0.0-beta.34":
   version "7.0.0-beta.34"
@@ -364,6 +384,12 @@
   resolved "https://registry.npmjs.org/@babel/plugin-syntax-optional-catch-binding/-/plugin-syntax-optional-catch-binding-7.0.0-beta.41.tgz#115df4798d408731aed14cba981d369d40a7700e"
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.41"
+
+"@babel/plugin-syntax-optional-chaining@7.0.0-beta.42":
+  version "7.0.0-beta.42"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-optional-chaining/-/plugin-syntax-optional-chaining-7.0.0-beta.42.tgz#2c4e2ffc276e8e22577c68cea6a8ca472c147802"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.42"
 
 "@babel/plugin-transform-arrow-functions@7.0.0-beta.41":
   version "7.0.0-beta.41"
