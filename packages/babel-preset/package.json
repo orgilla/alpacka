@@ -14,6 +14,7 @@
     "@babel/core": "7.0.0-beta.41",
     "@babel/plugin-proposal-class-properties": "7.0.0-beta.41",
     "@babel/plugin-proposal-decorators": "^7.0.0-beta.41",
+    "@babel/plugin-proposal-function-bind": "^7.0.0-beta.42",
     "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.41",
     "@babel/plugin-transform-classes": "7.0.0-beta.41",
     "@babel/plugin-transform-destructuring": "7.0.0-beta.41",

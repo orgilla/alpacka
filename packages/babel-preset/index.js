@@ -83,6 +83,7 @@ module.exports = function(api, opts) {
       // Experimental macros support. Will be documented after it's had some time
       // in the wild.
       require('babel-plugin-macros'),
+      require('@babel/plugin-proposal-function-bind').default,
       // Necessary to include regardless of the environment because
       // in practice some other transforms (such as object-rest-spread)
       // don't work without it: https://github.com/babel/babel/issues/7215

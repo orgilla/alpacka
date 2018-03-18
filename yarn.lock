@@ -179,6 +179,10 @@
   version "7.0.0-beta.41"
   resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.41.tgz#b515524853b2e509409ccbcd8b0bc3586da3e7f0"
 
+"@babel/helper-plugin-utils@7.0.0-beta.42":
+  version "7.0.0-beta.42"
+  resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.42.tgz#9aa8b3e5dc72abea6b4f686712a7363cb29ea057"
+
 "@babel/helper-regex@7.0.0-beta.41":
   version "7.0.0-beta.41"
   resolved "https://registry.npmjs.org/@babel/helper-regex/-/helper-regex-7.0.0-beta.41.tgz#5c02e6e31546d4f4a928a82e1c1a28f0d8937637"
@@ -274,6 +278,13 @@
     "@babel/helper-plugin-utils" "7.0.0-beta.41"
     "@babel/plugin-syntax-decorators" "7.0.0-beta.41"
 
+"@babel/plugin-proposal-function-bind@^7.0.0-beta.42":
+  version "7.0.0-beta.42"
+  resolved "https://registry.npmjs.org/@babel/plugin-proposal-function-bind/-/plugin-proposal-function-bind-7.0.0-beta.42.tgz#c99d6753cc8e668bfa119476c4f3d0f25f2a1e2f"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.42"
+    "@babel/plugin-syntax-function-bind" "7.0.0-beta.42"
+
 "@babel/plugin-proposal-object-rest-spread@7.0.0-beta.41":
   version "7.0.0-beta.41"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.0.0-beta.41.tgz#4c779ce64867f5b51f6a5178128d732573f96b0a"
@@ -329,6 +340,12 @@
   resolved "https://registry.npmjs.org/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.0.0-beta.41.tgz#5d5408faecd8cf5fd223cdcee32bbcf26db53dad"
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.41"
+
+"@babel/plugin-syntax-function-bind@7.0.0-beta.42":
+  version "7.0.0-beta.42"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-function-bind/-/plugin-syntax-function-bind-7.0.0-beta.42.tgz#63e1cf63625687a48a2b9789dbb87a8fa5932f6f"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.42"
 
 "@babel/plugin-syntax-jsx@7.0.0-beta.41":
   version "7.0.0-beta.41"
