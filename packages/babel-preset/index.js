@@ -41,7 +41,6 @@ module.exports = function(api, opts) {
         '"test", and "production". Instead, received: '}${JSON.stringify(env)}.`
     );
   }
-  console.log(opts);
   return {
     presets: [
       isEnvTest && [
