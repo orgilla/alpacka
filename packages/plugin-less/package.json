@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "cache-loader": "^1.2.2",
-    "css-loader": "^0.28.10",
+    "css-loader": "^0.28.11",
     "ignore-loader": "^0.1.2",
     "less": "3.0.1",
     "less-loader": "^4.1.0",

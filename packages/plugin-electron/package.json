@@ -11,15 +11,15 @@
   "license": "MIT",
   "dependencies": {
     "devtron": "^1.4.0",
-    "electron": "^1.8.3",
-    "electron-builder": "^20.5.1",
+    "electron": "^1.8.4",
+    "electron-builder": "^20.6.2",
     "electron-debug": "^1.4.0",
     "electron-log": "^2.2.13",
     "electron-publisher": "^0.1.6",
-    "electron-publisher-s3": "^20.5.0",
-    "electron-updater": "^2.21.0",
+    "electron-publisher-s3": "^20.7.0",
+    "electron-updater": "^2.21.3",
     "electron-webpack-plugin": "^2.0.0",
-    "generate-json-webpack-plugin": "^0.2.2",
+    "generate-json-webpack-plugin": "^0.3.0",
     "node-machine-id": "^1.1.10"
   }
 }

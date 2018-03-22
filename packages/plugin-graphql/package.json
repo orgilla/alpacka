@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "graphql": "^0.13.1",
+    "graphql": "^0.13.2",
     "webpack-graphql-loader": "^0.1.0"
   }
 }

@@ -173,8 +173,19 @@ module.exports = options => {
     config.plugins.push(
       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
     );
-    /* config.output.filename = '[name].[chunkhash].js';
-    config.output.chunkFilename = '[name].[chunkhash].js';
+    /* config.output.filename = `[name].[chunkhash].js`;
+    config.output.chunkFilename = `[name].[chunkhash].js`;
+    config.optimization.splitChunks = {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+          priority: -10
+        }
+      }
+    }; */
+    /*
     config.optimization.splitChunks = {
       chunks: 'async',
       minSize: 1,
@@ -290,9 +301,9 @@ module.exports = options => {
     .map(resolvePlugin)
     .reduce((store, plugin) => plugin(config, args) || config, config);
 
-  const e = newConfig.entry;
+  /* const e = newConfig.entry;
   newConfig.entry = {};
-  newConfig.entry[filename] = e;
+  newConfig.entry[filename] = e; */
 
   return newConfig;
 };

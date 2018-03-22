@@ -9,6 +9,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "generate-json-webpack-plugin": "^0.2.2"
+    "generate-json-webpack-plugin": "^0.3.0"
   }
 }
