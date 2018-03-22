@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "0.12.16",
+  "version": "0.12.17",
   "name": "@alpacka/plugin-babel-react",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
@@ -10,7 +10,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@alpacka/babel-preset": "^0.12.16",
+    "@alpacka/babel-preset": "^0.12.17",
     "@babel/polyfill": "^7.0.0-beta.42",
     "@babel/runtime": "^7.0.0-beta.42",
     "babel-loader": "^8.0.0-beta.2",
