@@ -1,4 +1,3 @@
-const babelOptions = require('@alpacka/babel-preset');
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
@@ -18,7 +17,11 @@ const init = ({ packages, root, extensions, force }) => {
       .pipe(debug())
       .pipe(newer(dest, { extension: force ? '.xyz' : '.js' }))
       .pipe(sourcemaps.init())
-      .pipe(babel({ presets: [babelOptions] }))
+      .pipe(
+        babel({
+          presets: [[require('@alpacka/babel-preset'), { isLibrary: true }]]
+        })
+      )
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(dest));
   const src = [];

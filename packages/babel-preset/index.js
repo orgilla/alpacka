@@ -41,7 +41,7 @@ module.exports = function(api, opts) {
         '"test", and "production". Instead, received: '}${JSON.stringify(env)}.`
     );
   }
-
+  console.log(opts);
   return {
     presets: [
       isEnvTest && [
@@ -56,18 +56,22 @@ module.exports = function(api, opts) {
       (isEnvProduction || isEnvDevelopment) && [
         // Latest stable ECMAScript features
         require('@babel/preset-env').default,
-        {
-          // `entry` transforms `@babel/polyfill` into individual requires for
-          // the targeted browsers. This is safer than `usage` which performs
-          // static code analysis to determine what's required.
-          // This is probably a fine default to help trim down bundles when
-          // end-users inevitably import '@babel/polyfill'.
-          //  useBuiltIns: 'entry',
-          useBuiltIns: opts.isLibrary ? false : 'entry',
-          // Do not transform modules to CJS
-          modules: opts.isLibrary ? 'commonjs' : false
-          // modules: false
-        }
+        opts.isLibrary
+          ? {
+              useBuiltIns: false
+              // modules: 'commonjs'
+            }
+          : {
+              // `entry` transforms `@babel/polyfill` into individual requires for
+              // the targeted browsers. This is safer than `usage` which performs
+              // static code analysis to determine what's required.
+              // This is probably a fine default to help trim down bundles when
+              // end-users inevitably import '@babel/polyfill'.
+              //  useBuiltIns: 'entry',
+              useBuiltIns: 'entry',
+              // Do not transform modules to CJS
+              modules: false
+            }
       ],
       [
         require('@babel/preset-react').default,
@@ -113,6 +117,7 @@ module.exports = function(api, opts) {
       [
         require('@babel/plugin-transform-runtime').default,
         {
+          // useESModules: true
           /* helpers: false,
           polyfill: false,
           regenerator: true */
