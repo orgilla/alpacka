@@ -122,7 +122,8 @@ module.exports = function(api, opts) {
           regenerator: true */
         }
       ],
-      isEnvProduction && [
+      // isEnvProduction && [
+      [
         // Remove PropTypes from production build
         require('babel-plugin-transform-react-remove-prop-types').default,
         {
