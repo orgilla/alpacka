@@ -2,8 +2,15 @@ const path = require('path');
 const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 
-module.exports = (config, { appRoot, externals = [], isNode }) => {
-  if (isNode) {
+module.exports = (config, { appRoot, externals = [], isNode, isElectron }) => {
+  if (isElectron) {
+    config.externals = {
+      sqlite3: "require('sqlite3')",
+      'pouchdb-adapter-node-websql': "require('pouchdb-adapter-node-websql')",
+      bindings: "require('bindings')",
+      pouchdb: "require('pouchdb')",
+    };
+  } else if (isNode) {
     const getExternals = modulesDir =>
       nodeExternals({
         modulesDir,
@@ -28,10 +35,10 @@ module.exports = (config, { appRoot, externals = [], isNode }) => {
           v =>
             v === 'hashtax' ||
             v.indexOf('hashtax-') === 0 ||
-            v.indexOf('hashtax/') === 0
+            v.indexOf('hashtax/') === 0,
         ].concat(
           externals.map(key => v => v === key || v.indexOf(`${key}/`) === 0)
-        )
+        ),
       });
     config.externals = [];
     if (fs.existsSync(path.resolve(appRoot, 'node_modules'))) {

@@ -9,7 +9,7 @@ module.exports = (appRoot, output) => {
     version: packageJson.version,
     main: `${output}.js`,
     scripts: {
-      postinstall: 'electron-builder install-app-deps',
+      postinstall: `node ${appRoot}/node_modules/.bin/electron-builder install-app-deps`,
     },
     dependencies: packageJson.dependencies,
   };
