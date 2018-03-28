@@ -1,0 +1,12 @@
+{
+  "private": false,
+  "version": "0.12.18",
+  "name": "@alpacka/app",
+  "description": "",
+  "author": "Benjamin Kniffler <bkniffler@me.com>",
+  "contributors": ["Benjamin Kniffler <bkniffler@me.com>"],
+  "license": "MIT",
+  "dependencies": {
+    "@alpacka/core": "^0.12.17"
+  }
+}
