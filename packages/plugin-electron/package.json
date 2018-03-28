@@ -18,6 +18,7 @@
     "electron-log": "^2.2.13",
     "electron-publisher": "^0.1.6",
     "electron-publisher-s3": "^20.8.1",
+    "electron-rebuild": "^1.7.3",
     "electron-updater": "^2.21.4",
     "electron-webpack-plugin": "^2.0.0",
     "generate-json-webpack-plugin": "^0.3.0",
