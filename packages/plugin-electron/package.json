@@ -10,6 +10,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "bindings": "https://github.com/ArnsboMedia/node-bindings.git#fix-getFileName-method-for-electron-use",
     "devtron": "^1.4.0",
     "electron": "^1.8.4",
     "electron-builder": "^20.8.1",

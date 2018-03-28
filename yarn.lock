@@ -1640,6 +1640,10 @@ binary@^0.3.0:
     buffers "~0.1.1"
     chainsaw "~0.1.0"
 
+"bindings@https://github.com/ArnsboMedia/node-bindings.git#fix-getFileName-method-for-electron-use":
+  version "1.3.0"
+  resolved "https://github.com/ArnsboMedia/node-bindings.git#e4851ae12a52aa5db5373cee74ca6c0d9c925ec2"
+
 bl@~0.9.0:
   version "0.9.5"
   resolved "https://registry.npmjs.org/bl/-/bl-0.9.5.tgz#c06b797af085ea00bc527afc8efcf11de2232054"
