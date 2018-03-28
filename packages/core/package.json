@@ -15,7 +15,6 @@
     "dotenv": "^5.0.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "ignore-loader": "^0.1.2",
-    "json-loader": "^0.5.7",
     "jsonfile": "^4.0.0",
     "lodash": "^4.17.5",
     "node-notifier": "^5.2.1",

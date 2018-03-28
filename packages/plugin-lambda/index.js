@@ -12,12 +12,9 @@ module.exports = ({ src = process.cwd(), yml }) => (
     test: /\.(yaml|yml)$/,
     use: [
       {
-        loader: 'json-loader'
+        loader: 'yaml-loader',
       },
-      {
-        loader: 'yaml-loader'
-      }
-    ]
+    ],
   });
   if (isProd) {
     config.entry.push(src);
@@ -25,8 +22,8 @@ module.exports = ({ src = process.cwd(), yml }) => (
       new CopyWebpackPlugin([
         {
           from: yml,
-          to: output
-        }
+          to: output,
+        },
       ])
     );
     config.plugins.push(
@@ -38,7 +35,7 @@ module.exports = ({ src = process.cwd(), yml }) => (
     config.plugins.push(
       new WebpackShellPlugin({
         onBuildEnd: [`cd ${output} && npm i`],
-        safe: true
+        safe: true,
       })
     );
   } else {
