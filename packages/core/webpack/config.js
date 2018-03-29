@@ -108,6 +108,10 @@ module.exports = options => {
     module: {
       rules: [
         {
+          test: /(pdfkit|linebreak|fontkit|unicode|brotli|png-js).*\.js$/,
+          loader: 'transform-loader?brfs',
+        },
+        {
           test: /\.html$/,
           loader: 'file-loader?name=[name].[ext]',
         },
