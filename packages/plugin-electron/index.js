@@ -1,5 +1,5 @@
-const ElectronPlugin = require('./webpack-electron-plugin');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
+const ElectronPlugin = require('./webpack-electron-plugin');
 
 module.exports = (entry, options = {}) => (
   config,
@@ -17,15 +17,27 @@ module.exports = (entry, options = {}) => (
 
   config.plugins.push(
     new webpack.DefinePlugin({
-      'process.env.INDEX_HTML': url
+      'process.env.INDEX_HTML': url,
     })
   );
 
+  const packageJson = require(path.resolve(appRoot, 'package.json'));
+  const scripts = {};
+  if (config.sqlite || options.sqlite) {
+    packageJson.dependencies['sqlite3-electron-1.8.2'] =
+      'https://github.com/Otas13/sqlite3-electron-1.8.2';
+    packageJson.scripts.postinstall = `cp -R node_modules/sqlite3-electron-1.8.2/electron-v1.8-win32-x64 node_modules/sqlite3/lib/binding`;
+  }
   config.plugins.push(
-    new GenerateJsonPlugin(
-      'package.json',
-      require('./package-json')(appRoot, filename)
-    )
+    new GenerateJsonPlugin('package.json', {
+      name: packageJson.name,
+      description: packageJson.description,
+      author: packageJson.author,
+      version: packageJson.version,
+      main: `${filename}.js`,
+      scripts,
+      dependencies: packageJson.dependencies,
+    })
   );
 
   if (isDev) {
@@ -33,7 +45,7 @@ module.exports = (entry, options = {}) => (
     config.plugins.push(
       new ElectronPlugin({
         test: new RegExp(`^./${filename}`),
-        path: output
+        path: output,
       })
     );
   }

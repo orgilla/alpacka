@@ -15,13 +15,13 @@ module.exports = (
     output,
     filename,
     target,
-    env = {}
+    env = {},
   }
 ) => {
   config.plugins = config.plugins.concat([
     new FriendlyErrorsWebpackPlugin(),
     new webpack.LoaderOptionsPlugin({
-      debug: isDev
+      debug: isDev,
     }),
     new webpack.DefinePlugin(
       Object.assign(
@@ -38,14 +38,14 @@ module.exports = (
           'process.env.BUILD_ON': `"${new Date()}"`,
           'process.env.NODE_ENV': `"${isProd ? 'production' : 'development'}"`,
           'process.env.IS_NODE': isNode,
-          'process.env.IS_ELECTRON': isElectron
+          'process.env.IS_ELECTRON': isElectron,
         }
       )
     ),
     // new PrepackWebpackPlugin({ }),
     // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /de/),
-    new ProgressBarPlugin()
+    new ProgressBarPlugin(),
     // new CheckerPlugin(),
   ]);
 
@@ -58,13 +58,13 @@ module.exports = (
       new webpack.BannerPlugin({
         banner: 'require("source-map-support").install();',
         raw: true,
-        entryOnly: false
+        entryOnly: false,
       })
     );
     if (isDev && target === 'node') {
       config.plugins.push(
         new StartServerPlugin({
-          name: `${filename}.js`
+          name: `${filename}.js`,
           // nodeArgs: [`--inspect=${devPort + 1}`], // allow debugging
         })
       );
@@ -83,7 +83,7 @@ module.exports = (
     config.plugins.push(
       new BundleAnalyzerPlugin({
         reportFilename: './_report.html',
-        analyzerMode: 'static'
+        analyzerMode: 'static',
         // generateStatsFile: false,
       })
     );
@@ -94,7 +94,7 @@ module.exports = (
     config.plugins.push(
       new AssetsPlugin({
         filename: 'assets.json',
-        path: output
+        path: output,
       })
     );
     config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());

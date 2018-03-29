@@ -5,10 +5,7 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = (config, { appRoot, externals = [], isNode, isElectron }) => {
   if (isElectron) {
     config.externals = {
-      sqlite3: "require('sqlite3')",
-      'pouchdb-adapter-node-websql': "require('pouchdb-adapter-node-websql')",
-      bindings: "require('bindings')",
-      pouchdb: "require('pouchdb')",
+      websql: "require('websql')",
     };
   } else if (isNode) {
     const getExternals = modulesDir =>

@@ -269,8 +269,8 @@ module.exports = options => {
       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
     );
   } else {
-    config.output.filename = `[name].js`;
-    config.output.chunkFilename = `[name].js`;
+    config.output.filename = `${filename}.js`;
+    config.output.chunkFilename = `${filename}.js`;
   }
 
   const args = Object.assign({}, options, {
