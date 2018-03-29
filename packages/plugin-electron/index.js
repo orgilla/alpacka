@@ -1,4 +1,5 @@
-const GenerateJsonPlugin = require('generate-json-webpack-plugin');
+const path = require('path');
+const ElectronPlugin = require('./webpack-electron-plugin');
 const ElectronPlugin = require('./webpack-electron-plugin');
 
 module.exports = (entry, options = {}) => (
