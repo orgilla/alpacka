@@ -79,7 +79,7 @@ module.exports = options => {
     resolve: {
       // Temporary set mainFields: https://github.com/graphql/graphql-js/issues/1272
       mainFields: ['browser', 'main', 'module'],
-      extensions: ['.js', '.less'],
+      extensions: ['.js', '.less', '.json'],
       modules: [
         path.resolve(appRoot, 'node_modules'),
         path.resolve(appRoot, '..', '..', 'node_modules'),
