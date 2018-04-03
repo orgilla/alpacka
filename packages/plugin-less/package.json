@@ -15,7 +15,7 @@
     "ignore-loader": "^0.1.2",
     "less": "3.0.1",
     "less-loader": "^4.1.0",
-    "mini-css-extract-plugin": "^0.2.0",
+    "mini-css-extract-plugin": "^0.4.0",
     "string-replace-loader": "^2.1.1",
     "style-loader": "^0.20.3"
   }
