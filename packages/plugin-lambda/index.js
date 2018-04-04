@@ -12,6 +12,9 @@ module.exports = ({ src = process.cwd(), yml }) => (
     test: /\.(yaml|yml)$/,
     use: [
       {
+        loader: 'json-loader',
+      },
+      {
         loader: 'yaml-loader',
       },
     ],
