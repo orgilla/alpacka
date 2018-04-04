@@ -1,6 +1,6 @@
 {
   "private": false,
-  "version": "0.12.21",
+  "version": "0.12.36",
   "name": "@alpacka/eslint-config",
   "description": "",
   "author": "Benjamin Kniffler <bkniffler@me.com>",
