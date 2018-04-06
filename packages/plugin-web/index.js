@@ -25,7 +25,7 @@ module.exports = (args = {}) => (config, props) => {
     config.plugins.push(
       new TemplatePlugin({
         filename: 'offline.html',
-        template,
+        template
       })
     );
     config.plugins.push(
@@ -38,7 +38,7 @@ module.exports = (args = {}) => (config, props) => {
         caches: {
           main: ['*.js', '*.css'],
           additional: [':externals:'],
-          optional: [':rest:'],
+          optional: [':rest:']
         },
         externals: ['/', '/offline.html'],
         updateStrategy: 'all',
@@ -46,12 +46,12 @@ module.exports = (args = {}) => (config, props) => {
           // (node:18281) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Error: webpack.optimize.UglifyJsPlugin has been removed, please use config.optim
           minify: false,
           events: true,
-          navigateFallbackURL: '/',
+          navigateFallbackURL: '/'
         },
         AppCache: {
           events: true,
-          FALLBACK: { '/': '/offline.html' },
-        },
+          FALLBACK: { '/': '/offline.html' }
+        }
       })
     );
   }
@@ -62,7 +62,7 @@ module.exports = (args = {}) => (config, props) => {
         // context: path.isAbsolute(dir) ? dir : path.resolve(appRoot, dir),
         context,
         from: '**/*',
-        to: output,
+        to: output
       }))
     )
   );
@@ -71,7 +71,7 @@ module.exports = (args = {}) => (config, props) => {
     new TemplatePlugin({
       filename: 'index.html',
       publicPath: config.output.publicPath,
-      template,
+      template
     })
   );
   return config;

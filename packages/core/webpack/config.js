@@ -34,7 +34,8 @@ module.exports = options => {
     plugins = [],
     paths,
     target,
-    filename = 'main',
+    modules = [],
+    filename = 'main'
   } = options;
 
   const isProd = mode === 'production' || mode === 'test';
@@ -61,7 +62,7 @@ module.exports = options => {
       minimize: false,
       namedModules: isDev,
       noEmitOnErrors: true,
-      concatenateModules: isProd,
+      concatenateModules: isProd
     },
     stats: {
       cached: isVerbose,
@@ -73,70 +74,65 @@ module.exports = options => {
       modules: isVerbose,
       reasons: isDev,
       timings: true,
-      version: isVerbose,
+      version: isVerbose
     },
     plugins: [],
     resolve: {
-      // Temporary set mainFields: https://github.com/graphql/graphql-js/issues/1272
       mainFields: ['browser', 'main', 'module'],
       extensions: ['.js', '.less', '.json'],
-      modules: [
+      modules: modules.concat([
         path.resolve(appRoot, 'node_modules'),
-        path.resolve(appRoot, '..', '..', 'node_modules'),
-      ],
-      /* modules: [
-        path.resolve(appRoot, 'node_modules'),
-        path.resolve(appRoot, 'app'),
-      ], */
+        path.resolve(appRoot, '..', '..', 'node_modules')
+      ]),
       alias: Object.assign(
         {},
         {
           __app__: path.resolve(__dirname, '..', 'noop'),
           __server__: path.resolve(__dirname, '..', 'noop'),
           __electron__: path.resolve(__dirname, '..', 'noop'),
-          __root__: appRoot,
+          __root__: appRoot
         },
         alias
-      ),
+      )
     },
     resolveLoader: {
       modules: [
         path.resolve(appRoot, 'node_modules'),
-        path.resolve(appRoot, '..', '..', 'node_modules'),
-      ],
+        path.resolve(appRoot, '..', '..', 'node_modules')
+      ]
     },
     module: {
       rules: [
         {
           test: /(pdfkit|linebreak|fontkit|unicode|brotli|png-js).*\.js$/,
-          loader: 'transform-loader?brfs',
+          loader: 'transform-loader?brfs'
         },
         {
           test: /\.html$/,
-          loader: 'file-loader?name=[name].[ext]',
+          loader: 'file-loader?name=[name].[ext]'
         },
         {
           test: /\.(jpg|jpeg|png|gif|eot|ttf|woff|woff2|svg)$/,
           loader: 'url-loader',
           options: {
-            limit: 20000,
-          },
+            limit: 20000
+          }
         },
         {
           test: /\.(txt|md|pug)$/,
-          loader: 'raw-loader',
+          loader: 'raw-loader'
         },
         {
           test: /\.flow$/,
-          loader: 'ignore-loader',
-        },
-      ],
+          loader: 'ignore-loader'
+        }
+      ]
     },
     output: {
       publicPath: isElectron ? './' : '/',
-      path: output,
+      path: output
     },
-    entry: {},
+    entry: {}
   };
 
   // inline-source-map for web-dev
@@ -153,7 +149,7 @@ module.exports = options => {
       process: false,
       Buffer: false,
       __filename: false,
-      __dirname: false,
+      __dirname: false
     };
     config.output.libraryTarget = 'commonjs2';
   } else {
@@ -162,7 +158,7 @@ module.exports = options => {
       net: 'empty',
       tls: 'empty',
       __dirname: true,
-      __filename: true,
+      __filename: true
     };
   }
 
@@ -170,102 +166,6 @@ module.exports = options => {
   if (isProd && target === 'web') {
     config.output.filename = `${filename}.[chunkhash].js`;
     config.output.chunkFilename = `${filename}.[chunkhash].js`;
-    config.plugins.push(
-      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
-    );
-    /* config.output.filename = `[name].[chunkhash].js`;
-    config.output.chunkFilename = `[name].[chunkhash].js`;
-    config.optimization.splitChunks = {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-          priority: -10
-        }
-      }
-    }; */
-    /*
-    config.optimization.splitChunks = {
-      chunks: 'async',
-      minSize: 1,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      //  name: true,
-      cacheGroups: {
-        [filename]: {
-          name: filename,
-          chunks: 'all',
-          // minSize: 1,
-          minChunks: 2,
-          enforce: true
-        },
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          priority: -10
-        }
-      }
-    }; */
-    /* const file = isProd ? config.output.chunkFilename : config.output.filename;
-    console.log(isProd, target, config.output.chunkFilename, {
-      [file]: {
-        name: filename,
-        chunks: 'initial',
-        minChunks: 2
-      }
-    });
-    config.optimization = {
-      runtimeChunk: false,
-      splitChunks: {
-        cacheGroups: {
-          [file]: {
-            name: filename,
-            chunks: 'initial',
-            minChunks: 2
-          }
-        }
-      }
-    }; */
-    /* config.plugins.push(
-      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
-    ); */
-    /*
-    config.optimization = {
-      runtimeChunk: false,
-      splitChunks: {
-        cacheGroups: {
-          [file]: {
-            name: filename,
-            chunks: "initial",
-            minChunks: 2
-          }
-        }
-      },
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
-      },
-    };
-    */
-    /*
-    const file = isProd ? output.chunkFileName : output.filename;
-    config.plugins.push(
-      new webpack.optimize.CommonsChunkPlugin({
-        name: filename,
-        filename: file,
-        minChunks: 2,
-        async: true,
-        children: true
-      })
-    );
-    */
   } else if (isProd) {
     config.output.filename = `${filename}.js`;
     config.output.chunkFilename = `${filename}.js`;
@@ -296,17 +196,13 @@ module.exports = options => {
     paths,
     cache,
     output,
-    filename,
+    filename
   });
 
   const newConfig = [entry, externals, webpackPlugins]
     .concat(plugins)
     .map(resolvePlugin)
     .reduce((store, plugin) => plugin(config, args) || config, config);
-
-  /* const e = newConfig.entry;
-  newConfig.entry = {};
-  newConfig.entry[filename] = e; */
 
   return newConfig;
 };
