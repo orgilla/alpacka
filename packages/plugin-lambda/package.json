@@ -12,7 +12,7 @@
   "dependencies": {
     "copy-webpack-plugin": "^4.5.1",
     "express": "^4.16.3",
-    "generate-json-webpack-plugin": "^0.3.0",
+    "generate-json-webpack-plugin": "^0.3.1",
     "start-server-webpack-plugin": "^2.2.5",
     "yaml-loader": "^0.5.0"
   }

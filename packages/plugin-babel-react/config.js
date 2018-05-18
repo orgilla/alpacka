@@ -80,51 +80,22 @@ module.exports = function(api, opts) {
           development: isEnvDevelopment || isEnvTest
         }
       ],
-      isFlowEnabled && [require('@babel/preset-flow').default]
+      [require('@babel/preset-typescript').default, {}]
     ].filter(Boolean),
     plugins: [
       // Experimental macros support. Will be documented after it's had some time
       // in the wild.
-      require('babel-plugin-macros'),
       require('@babel/plugin-proposal-optional-chaining').default,
       require('@babel/plugin-proposal-function-bind').default,
       require('@babel/plugin-proposal-do-expressions').default,
-      // Necessary to include regardless of the environment because
-      // in practice some other transforms (such as object-rest-spread)
-      // don't work without it: https://github.com/babel/babel/issues/7215
-      require('@babel/plugin-transform-destructuring').default,
-      // class { handleClick = () => { } }
+      [require('@babel/plugin-proposal-class-properties'), { loose: true }],
       [
-        require('@babel/plugin-proposal-decorators').default,
-        {
-          legacy: true
-        }
-      ],
-      require('@babel/plugin-proposal-class-properties').default,
-      // The following two plugins use Object.assign directly, instead of Babel's
-      // extends helper. Note that this assumes `Object.assign` is available.
-      // { ...todo, completed: true }
-      [
+        // The following two plugins use Object.assign directly, instead of Babel's
+        // extends helper. Note that this assumes `Object.assign` is available.
+        // { ...todo, completed: true }
         require('@babel/plugin-proposal-object-rest-spread').default,
         {
           useBuiltIns: true
-        }
-      ],
-      // Transforms JSX
-      [
-        require('@babel/plugin-transform-react-jsx').default,
-        {
-          useBuiltIns: true
-        }
-      ],
-      // Polyfills the runtime needed for async/await and generators
-      [
-        require('@babel/plugin-transform-runtime').default,
-        {
-          // useESModules: true
-          /* helpers: false,
-          polyfill: false,
-          regenerator: true */
         }
       ],
       isEnvProduction && [

@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+// const babel = require('@alpacka/babel-preset');
 const babel = require('@alpacka/babel-preset');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -17,25 +18,25 @@ module.exports = ({ uglify = true } = {}) => (config, options) => {
             // https://github.com/facebook/create-react-app/issues/2376
             // Pending further investigation:
             // https://github.com/mishoo/UglifyJS2/issues/2011
-            comparisons: false,
+            comparisons: false
           },
           mangle: {
-            safari10: true,
+            safari10: true
           },
           output: {
             comments: false,
             // Turned on because emoji and regex is not minified properly using default
             // https://github.com/facebook/create-react-app/issues/2488
-            ascii_only: true,
-          },
+            ascii_only: true
+          }
         },
         // Use multi-process parallel running to improve the build speed
         // Default number of concurrent runs: os.cpus().length - 1
         parallel: true,
         // Enable file caching
         cache: true,
-        sourceMap: true,
-      }),
+        sourceMap: true
+      })
     ];
     // config.plugins.push(new LodashModuleReplacementPlugin()),
     /* config.optimization.minimizer = [
@@ -83,18 +84,18 @@ module.exports = ({ uglify = true } = {}) => (config, options) => {
         {
           loader: 'cache-loader',
           options: {
-            cacheDirectory: resolve(cache, 'babel'),
-          },
+            cacheDirectory: resolve(cache, 'babel')
+          }
         },
         {
           loader: 'babel-loader',
           options: {
             presets: [[babel, { transform }]],
-            plugins,
-          },
-        },
+            plugins
+          }
+        }
       ],
-      exclude: /node_modules/,
+      exclude: /node_modules/
     });
   } else {
     config.module.rules.push({
@@ -103,18 +104,18 @@ module.exports = ({ uglify = true } = {}) => (config, options) => {
         {
           loader: 'cache-loader',
           options: {
-            cacheDirectory: resolve(cache, 'babel'),
-          },
+            cacheDirectory: resolve(cache, 'babel')
+          }
         },
         {
           loader: 'babel-loader',
           options: {
             presets: [[babel, { transform }]],
-            plugins,
-          },
-        },
+            plugins
+          }
+        }
       ],
-      exclude: /node_modules/,
+      exclude: /node_modules/
     });
   }
 

@@ -129,7 +129,12 @@ module.exports = options => {
       ]
     },
     output: {
-      publicPath: isElectron ? './' : '/',
+      publicPath:
+        isElectron && options.port
+          ? `http://localhost:${options.port}/`
+          : isElectron
+            ? './'
+            : '/',
       path: output
     },
     entry: {}

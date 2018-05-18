@@ -6,6 +6,7 @@ module.exports = (config, { appRoot, externals = [], isNode, isElectron }) => {
   if (isElectron) {
     config.externals = {
       websql: "require('websql')",
+      realm: "require('realm')"
     };
   } else if (isNode) {
     const getExternals = modulesDir =>
@@ -32,10 +33,10 @@ module.exports = (config, { appRoot, externals = [], isNode, isElectron }) => {
           v =>
             v === 'hashtax' ||
             v.indexOf('hashtax-') === 0 ||
-            v.indexOf('hashtax/') === 0,
+            v.indexOf('hashtax/') === 0
         ].concat(
           externals.map(key => v => v === key || v.indexOf(`${key}/`) === 0)
-        ),
+        )
       });
     config.externals = [];
     if (fs.existsSync(path.resolve(appRoot, 'node_modules'))) {
